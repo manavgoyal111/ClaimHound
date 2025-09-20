@@ -1,0 +1,5 @@
+langextract
+google-generativeai
+python-dotenv
+pandas
+numpy
