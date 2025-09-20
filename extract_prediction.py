@@ -1,5 +1,6 @@
 import json
 import os
+from collections import defaultdict
 from dotenv import load_dotenv
 import langextract as lx
 import textwrap
@@ -101,7 +102,7 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
 
         try:
             print(
-                f"Processing tweet {i+1}/{len(tweets)} (ID: {tweet_id}): {tweet_text[:30]}..."
+                f"Processing tweet {i+1}/{len(tweets)} (ID: {tweet_id})"
             )
             # Extract predictions using LangExtract
             result = lx.extract(
@@ -228,55 +229,89 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
         print(f"❌ Error saving results: {str(e)}")
 
 
+import json
+import langextract as lx
+
+
 def create_visualization(
     predictions_file="predictions.json", output_html="predictions_viz.html"
 ):
-    """Create visualization of extracted predictions (optional)"""
+    """
+    Create a LangExtract HTML visualization for all predictions in predictions_file.
+    Handles multiple extractions across multiple tweets/documents.
+    """
     try:
-        # Convert predictions to JSONL format for LangExtract visualization
+        # Load predictions
         with open(predictions_file, "r", encoding="utf-8") as f:
             predictions = json.load(f)
         if not predictions:
             print("No predictions found to visualize.")
             return
-        # Create annotated documents for visualization
-        documents = []
+
+        # Group predictions by tweet ID
+        tweet_groups = defaultdict(list)
         for pred in predictions:
-            tweet_text = pred["original_tweet"]["text"]
-            extraction_text = pred["extraction_text"]
-            # Convert charInterval to CharInterval object
-            char_start = pred.get("charInterval", {}).get("start", 0)
-            char_end = pred.get("charInterval", {}).get("end", len(extraction_text))
-            char_interval = lx.data.CharInterval(char_start, char_end)
-            # Convert alignmentStatus string to enum
-            alignment_status_str = pred.get("alignmentStatus", "MATCH_EXACT")
-            alignment_status = getattr(lx.data.AlignmentStatus, alignment_status_str)
-            # Create extraction
-            extraction = lx.data.Extraction(
-                extraction_class=pred["extraction_class"],
-                extraction_text=extraction_text,
-                char_interval=char_interval,
-                alignment_status=alignment_status,
-                extraction_index=pred.get("extractionIndex", 0),
-                attributes=pred,
-            )
-            # Create document (metadata is not supported in AnnotatedDocument)
-            doc = lx.data.AnnotatedDocument(
-                text=tweet_text,
-                extractions=[extraction],
-            )
+            tweet_id = pred.get("original_tweet", {}).get("id", f"doc_{pred.get('document_id')}")
+            tweet_groups[tweet_id].append(pred)
+
+        documents = []
+        for tweet_id, preds in tweet_groups.items():
+            text = preds[0]["original_tweet"].get("text", "")
+            if not text:
+                continue
+
+            extractions = []
+            for idx, pred in enumerate(preds):
+                extraction_text = pred.get("extraction_text", "")
+                char_start = pred.get("charInterval", {}).get("start", 0)
+                char_end = pred.get("charInterval", {}).get("end", len(extraction_text))
+                char_interval = lx.data.CharInterval(char_start, char_end)
+
+                alignment_status_str = pred.get("alignmentStatus") or "MATCH_EXACT"
+                alignment_status = getattr(
+                    lx.data.AlignmentStatus,
+                    alignment_status_str.upper(),
+                    lx.data.AlignmentStatus.MATCH_EXACT
+                )
+
+                extraction_attrs = {
+                    "location": pred.get("location", ""),
+                    "prediction": pred.get("prediction", ""),
+                    "justification": pred.get("justification", "")
+                }
+
+                extraction = lx.data.Extraction(
+                    extraction_class=pred.get("extraction_class", "Other").capitalize(),
+                    extraction_text=extraction_text,
+                    char_interval=char_interval,
+                    alignment_status=alignment_status,
+                    extraction_index=idx,
+                    attributes=extraction_attrs
+                )
+                extractions.append(extraction)
+
+            doc = lx.data.AnnotatedDocument(text=text, extractions=extractions)
             documents.append(doc)
 
-        # Save as JSONL in same folder as predictions_file
+        if not documents:
+            print("No valid documents to visualize.")
+            return
+
+        # Save all documents to JSONL
         jsonl_file = os.path.splitext(predictions_file)[0] + ".jsonl"
         lx.io.save_annotated_documents(documents, output_name=jsonl_file)
+        print(f"Saved JSONL for visualization: {jsonl_file}")
+
         # Generate HTML visualization
         html_content = lx.visualize("test_output/" + jsonl_file)
         with open(output_html, "w", encoding="utf-8") as f:
             f.write(html_content)
-        print(f"Visualization created: {output_html}")
+
+        print(f"✅ Visualization created successfully: {output_html}")
+        print(f"📄 JSONL source saved: {jsonl_file}")
+
     except Exception as e:
-        print(f"Error creating visualization: {str(e)}")
+        print(f"❌ Error creating visualization: {str(e)}")
 
 
 # Define a function to export predictions

@@ -24,51 +24,51 @@
     }
   },
   {
-    "extraction_class": "other",
-    "extraction_text": "armed forces",
+    "extraction_class": "economics",
+    "extraction_text": "dollar",
     "charInterval": {
-      "start": 21,
-      "end": 33
+      "start": 22,
+      "end": 28
     },
     "alignmentStatus": "MATCH_EXACT",
     "extractionIndex": 1,
-    "location": "unknown",
-    "prediction": "We don't have to spill the blood of our soldiers for gali level terrorists in pak if we get those by just playing cricket at a third venue",
-    "justification": "For the armed forces only",
+    "location": "global",
+    "prediction": "The dollar will fall in 2030",
+    "justification": "India is rising",
     "original_tweet": {
-      "id": "1967151410879070619",
-      "text": "@archieposts For the armed forces only I am saying. We don't have to spill the blood of our soldiers for gali level terrorists in pak if we get those by just playing cricket at a third venue.",
+      "id": "1967239251701141912",
+      "text": "I predict the fall of dollar in 2030 as India is rising.",
       "author": "Dr. Shah",
       "handle": "@ankitatIIMA",
-      "created_at": "2025-09-14 14:30:18",
-      "url": "https://x.com/ankitatIIMA/status/1967151410879070619",
-      "likes": "58",
-      "retweets": "9",
-      "views": "1823"
+      "created_at": "2025-09-14 20:19:21",
+      "url": "https://x.com/ankitatIIMA/status/1967239251701141912",
+      "likes": "782",
+      "retweets": "162",
+      "views": "19680"
     }
   },
   {
-    "extraction_class": "other",
-    "extraction_text": "local terrorists",
+    "extraction_class": "economics",
+    "extraction_text": "Oil prices",
     "charInterval": {
-      "start": 28,
-      "end": 44
+      "start": 0,
+      "end": 10
     },
     "alignmentStatus": "MATCH_EXACT",
     "extractionIndex": 1,
     "location": "unknown",
-    "prediction": "Local terrorists who would burn down Pakistani cities during the handover process to get it stopped are being eliminated",
-    "justification": "Smooth means",
+    "prediction": "Oil prices should rise",
+    "justification": "due to war with US in 3 years",
     "original_tweet": {
-      "id": "1967144288158101651",
-      "text": "@Call_It_Flash Smooth means local terrorists who would burn down pak cities during the handover process to get it stopped, are being eliminated with this.",
+      "id": "1967239251701141912",
+      "text": "Oil prices should rise duet o war with US in 3 years.",
       "author": "Dr. Shah",
       "handle": "@ankitatIIMA",
-      "created_at": "2025-09-14 14:02:00",
-      "url": "https://x.com/ankitatIIMA/status/1967144288158101651",
-      "likes": "48",
-      "retweets": "8",
-      "views": "917"
+      "created_at": "2025-09-14 20:19:21",
+      "url": "https://x.com/ankitatIIMA/status/1967239251701141912",
+      "likes": "782",
+      "retweets": "162",
+      "views": "19680"
     }
   }
 ]

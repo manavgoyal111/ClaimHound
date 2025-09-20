@@ -181,9 +181,7 @@ if __name__ == "__main__":
     main()
 
 
-# Change title & icon
 # Improve Extraction & UI
 # Get MIT licence
 # Handle media also
-# Fix html extraction
-# Add subcription model to see all predictions
+# Add subcription model to see all predictions otherwise only top 100
