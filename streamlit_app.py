@@ -18,6 +18,7 @@ load_dotenv()
 # Load predictions and tweets
 @st.cache_data
 def load_data(predictions_file="predictions.json", tweets_file="tweets.json"):
+    st.cache_data.clear()
     if os.path.exists(predictions_file):
         with open(predictions_file, "r", encoding="utf-8") as f:
             predictions = json.load(f)
@@ -53,7 +54,7 @@ def calculate_stats(predictions):
 
 
 def main():
-    st.set_page_config(page_title="Tweet Prediction Analyzer", layout="wide")
+    st.set_page_config(page_title="Claim Hound", page_icon="✨", layout="wide")
     st.title("🔮 Tweet Prediction Analyzer")
 
     predictions, tweets = load_data()
@@ -92,18 +93,13 @@ def main():
                         predictions = extract_predictions(
                             input_file="tweets.json", output_file="predictions.json"
                         )
-                        # Show progress info
-                        st.success(
-                            f"Extraction completed! {len(predictions)} predictions extracted."
-                        )
-                        # Optional: display first few predictions
-                        for pred in predictions[:5]:
-                            st.markdown(
-                                f"- **Tweet:** {pred.get('original_tweet', {}).get('text', '')[:100]}..."
+                        # Show progress info by displaying first few extracted predictions
+                        if predictions:
+                            st.success(
+                                f"Extraction completed! {len(predictions)} predictions extracted."
                             )
-                            st.markdown(
-                                f"  **Prediction:** {pred.get('prediction', '')}"
-                            )
+                        else:
+                            st.warning("No predictions were extracted.")
                     except Exception as e:
                         st.error(f"Extraction failed: {e}")
 
@@ -185,8 +181,9 @@ if __name__ == "__main__":
     main()
 
 
-# Give option to select file from data folder in left navbar
-# Inprove extraction
+# Change title & icon
+# Improve Extraction & UI
 # Get MIT licence
 # Handle media also
+# Fix html extraction
 # Add subcription model to see all predictions

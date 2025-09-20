@@ -108,9 +108,11 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
                 text_or_documents=tweet_text,
                 prompt_description=prompt,
                 examples=examples,
-                model_id="gemini-2.0-flash-lite",
+                model_id="gemini-1.5-flash",  # starcoder2:3b, gpt-4o, gemini-2.0-flash-lite
+                # model_url="http://localhost:11434",
+                # fence_output=True,
+                # use_schema_constraints=False,
             )
-            # print(result)
             # Normalize result to list of documents
             documents = []
             if hasattr(result, "documents"):
@@ -282,11 +284,7 @@ def extract_predictions(input_file="tweets.json", output_file="predictions.json"
     """Process tweets and return extracted predictions as a list"""
     process_tweets(input_file, output_file)
     if os.path.exists(output_file):
-        # Optional: create visualization
         create_visualization(output_file)
-        # Load predictions and return
-        import json
-
         with open(output_file, "r", encoding="utf-8") as f:
             predictions = json.load(f)
         return predictions
