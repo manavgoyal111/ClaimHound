@@ -97,4 +97,93 @@
 .lx-gif-optimized .lx-text-window { font-size: 16px; line-height: 1.8; }
 .lx-gif-optimized .lx-attributes-panel { font-size: 15px; }
 .lx-gif-optimized .lx-current-highlight { text-decoration-thickness: 4px; }
-</style><div class="lx-animated-wrapper"><p>No valid extractions to animate.</p></div>
+</style>
+<div class="lx-animated-wrapper lx-gif-optimized">
+  <div class="lx-attributes-panel">
+    <div class="lx-legend">Highlights Legend: <span class="lx-label" style="background-color:#D2E3FC;">economics</span></div>
+    <div id="attributesContainer"></div>
+  </div>
+  <div class="lx-text-window" id="textWindow">
+    I think the <span class="lx-highlight lx-current-highlight" data-idx="0" style="background-color:#D2E3FC;">stock market</span> might crash next year due to inflation concerns, but I&#x27;m not sure.
+  </div>
+  <div class="lx-controls">
+    <div class="lx-button-row">
+      <button class="lx-control-btn" onclick="playPause()">▶️ Play</button>
+      <button class="lx-control-btn" onclick="prevExtraction()">⏮ Previous</button>
+      <button class="lx-control-btn" onclick="nextExtraction()">⏭ Next</button>
+    </div>
+    <div class="lx-progress-container">
+      <input type="range" id="progressSlider" class="lx-progress-slider"
+             min="0" max="0" value="0"
+             onchange="jumpToExtraction(this.value)">
+    </div>
+    <div class="lx-status-text">
+      Entity <span id="entityInfo">1/1</span> |
+      Pos <span id="posInfo">[12-24]</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const extractions = [{"index": 0, "class": "economics", "text": "stock market", "color": "#D2E3FC", "startPos": 12, "endPos": 24, "beforeText": "I think the ", "extractionText": "stock market", "afterText": " might crash next year due to inflation concerns, but I&#x27;m not sure.", "attributesHtml": "<div><strong>class:</strong> economics</div><div><strong>attributes:</strong> {<span class=\"lx-attr-key\">extraction_class</span>: <span class=\"lx-attr-value\">economics</span>, <span class=\"lx-attr-key\">extraction_text</span>: <span class=\"lx-attr-value\">stock market</span>, <span class=\"lx-attr-key\">charInterval</span>: <span class=\"lx-attr-value\">{&#x27;start&#x27;: 12, &#x27;end&#x27;: 24}</span>, <span class=\"lx-attr-key\">alignmentStatus</span>: <span class=\"lx-attr-value\">MATCH_EXACT</span>, <span class=\"lx-attr-key\">extractionIndex</span>: <span class=\"lx-attr-value\">1</span>, <span class=\"lx-attr-key\">location</span>: <span class=\"lx-attr-value\">unknown</span>, <span class=\"lx-attr-key\">prediction</span>: <span class=\"lx-attr-value\">stock market might crash next year</span>, <span class=\"lx-attr-key\">justification</span>: <span class=\"lx-attr-value\">inflation concerns</span>, <span class=\"lx-attr-key\">original_tweet</span>: <span class=\"lx-attr-value\">{&#x27;id&#x27;: &#x27;1967242173159788629&#x27;, &#x27;text&#x27;: &quot;I think the stock market might crash next year due to inflation concerns, but I&#x27;m not sure.&quot;, &#x27;author&#x27;: &#x27;Dr. Shah&#x27;, &#x27;handle&#x27;: &#x27;@ankitatIIMA&#x27;, &#x27;created_at&#x27;: &#x27;2025-09-14 20:30:58&#x27;, &#x27;url&#x27;: &#x27;https://x.com/ankitatIIMA/status/1967242173159788629&#x27;, &#x27;likes&#x27;: &#x27;738&#x27;, &#x27;retweets&#x27;: &#x27;70&#x27;, &#x27;views&#x27;: &#x27;11181&#x27;}</span>}</div>"}];
+    let currentIndex = 0;
+    let isPlaying = false;
+    let animationInterval = null;
+    let animationSpeed = 1.0;
+
+    function updateDisplay() {
+      const extraction = extractions[currentIndex];
+      if (!extraction) return;
+
+      document.getElementById('attributesContainer').innerHTML = extraction.attributesHtml;
+      document.getElementById('entityInfo').textContent = (currentIndex + 1) + '/' + extractions.length;
+      document.getElementById('posInfo').textContent = '[' + extraction.startPos + '-' + extraction.endPos + ']';
+      document.getElementById('progressSlider').value = currentIndex;
+
+      const playBtn = document.querySelector('.lx-control-btn');
+      if (playBtn) playBtn.textContent = isPlaying ? '⏸ Pause' : '▶️ Play';
+
+      const prevHighlight = document.querySelector('.lx-text-window .lx-current-highlight');
+      if (prevHighlight) prevHighlight.classList.remove('lx-current-highlight');
+      const currentSpan = document.querySelector('.lx-text-window span[data-idx="' + currentIndex + '"]');
+      if (currentSpan) {
+        currentSpan.classList.add('lx-current-highlight');
+        currentSpan.scrollIntoView({block: 'center', behavior: 'smooth'});
+      }
+    }
+
+    function nextExtraction() {
+      currentIndex = (currentIndex + 1) % extractions.length;
+      updateDisplay();
+    }
+
+    function prevExtraction() {
+      currentIndex = (currentIndex - 1 + extractions.length) % extractions.length;
+      updateDisplay();
+    }
+
+    function jumpToExtraction(index) {
+      currentIndex = parseInt(index);
+      updateDisplay();
+    }
+
+    function playPause() {
+      if (isPlaying) {
+        clearInterval(animationInterval);
+        isPlaying = false;
+      } else {
+        animationInterval = setInterval(nextExtraction, animationSpeed * 1000);
+        isPlaying = true;
+      }
+      updateDisplay();
+    }
+
+    window.playPause = playPause;
+    window.nextExtraction = nextExtraction;
+    window.prevExtraction = prevExtraction;
+    window.jumpToExtraction = jumpToExtraction;
+
+    updateDisplay();
+  })();
+</script>

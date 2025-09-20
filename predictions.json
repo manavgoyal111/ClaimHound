@@ -10,7 +10,7 @@
     "extractionIndex": 1,
     "location": "unknown",
     "prediction": "stock market might crash next year",
-    "justification": "due to inflation concerns",
+    "justification": "inflation concerns",
     "original_tweet": {
       "id": "1967242173159788629",
       "text": "I think the stock market might crash next year due to inflation concerns, but I'm not sure.",

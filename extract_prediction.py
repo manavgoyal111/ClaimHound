@@ -244,11 +244,21 @@ def create_visualization(
         for pred in predictions:
             tweet_text = pred["original_tweet"]["text"]
             extraction_text = pred["extraction_text"]
-            # Create extraction data
+            # Convert charInterval to CharInterval object
+            char_start = pred.get("charInterval", {}).get("start", 0)
+            char_end = pred.get("charInterval", {}).get("end", len(extraction_text))
+            char_interval = lx.data.CharInterval(char_start, char_end)
+            # Convert alignmentStatus string to enum
+            alignment_status_str = pred.get("alignmentStatus", "MATCH_EXACT")
+            alignment_status = getattr(lx.data.AlignmentStatus, alignment_status_str)
+            # Create extraction
             extraction = lx.data.Extraction(
                 extraction_class=pred["extraction_class"],
                 extraction_text=extraction_text,
-                attributes=pred,
+                char_interval=char_interval,
+                alignment_status=alignment_status,
+                extraction_index=pred.get("extractionIndex", 0),
+                attributes=pred
             )
             # Create document (metadata is not supported in AnnotatedDocument)
             doc = lx.data.AnnotatedDocument(
