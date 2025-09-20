@@ -1,106 +1,99 @@
 # Tweet Prediction Analyzer
 
-A Streamlit-based Python application to extract, analyze, and visualize tweet predictions using LangExtract and other analytics.
+A Python-based Streamlit web app to extract, analyze, and visualize predictions from tweets using LangExtract.
 
 ---
 
 ## Features
 
-- Extract predictions from tweets.
-- View predictions along with metadata (author, date, tweet link, engagement metrics).
-- Validate predictions manually.
-- LLM verification of predictions.
-- Interactive analytics dashboard:
-
-  - Prediction validation status
-  - Prediction accuracy
-  - Predictions over time
-  - Top authors
-
-- Search and browse all tweets.
-- Export validated predictions as CSV.
+- Extract predictions from tweet datasets (CSV files) using LangExtract.
+- View, filter, and validate predictions interactively.
+- Visualize prediction statistics and trends.
+- LLM verification integration for predictions.
+- Export validated predictions.
 
 ---
 
-## Requirements
+## Prerequisites
 
-- Python 3.10+
+- Python 3.9+
 - Streamlit
-- Plotly
-- Pandas
-- LangExtract (Gemini-powered extraction library)
+- LangExtract Python SDK
+- pandas, plotly
 
-Install dependencies using pip:
+---
+
+## Installation
+
+1. Clone this repository:
 
 ```bash
-pip install streamlit plotly pandas langextract
+git clone https://github.com/yourusername/tweet-prediction-analyzer.git
+cd tweet-prediction-analyzer
 ```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Create a `.env` file in the project root with the following variables:
+
+```env
+INPUT_FOLDER=path/to/csv/folder
+LANGEXTRACT_API_KEY=your_langextract_api_key
+```
+
+- `INPUT_FOLDER`: Path to the folder containing your tweet CSV files.
+- `LANGEXTRACT_API_KEY`: API key for LangExtract.
 
 ---
 
-## File Structure
+## CSV File Structure
+
+Your tweet CSV should have the following columns:
 
 ```
-project_folder/
-├── app.py                  # Streamlit app
-├── main.py                 # Core extraction & analysis logic
-├── tweets.json             # Raw tweet data
-├── predictions.json        # Extracted predictions
-├── predictions_viz.html    # Optional LangExtract HTML visualization
-└── README.md               # Documentation
+id,tweetText,tweetURL,type,tweetAuthor,handle,replyCount,quoteCount,retweetCount,likeCount,views,bookmarkCount,createdAt,allMediaURL,videoURL
 ```
+
+- `id`: Unique tweet identifier
+- `tweetText`: Content of the tweet
+- `tweetURL`: URL of the tweet
+- `type`: Type of tweet (optional)
+- `tweetAuthor`: Name of the author
+- `handle`: Twitter handle
+- `replyCount`, `quoteCount`, `retweetCount`, `likeCount`, `views`, `bookmarkCount`: Tweet engagement metrics
+- `createdAt`: Timestamp of the tweet (format `YYYY-MM-DD HH:MM:SS`)
+- `allMediaURL`, `videoURL`: Media links
 
 ---
 
-## How to Run
-
-1. Ensure all required files (`tweets.json`, `predictions.json`) exist.
-2. Run the Streamlit app:
+## Running the App Locally
 
 ```bash
 streamlit run app.py
 ```
 
-3. Your default browser will open at `http://localhost:8501` displaying the app.
+- Open your browser at `http://localhost:8501`.
+- Use the sidebar to manage data, run extraction, and view analytics.
 
 ---
 
-## Usage
+## Project Structure
 
-### Sidebar Options
-
-- **Data Management**
-
-  - Re-extract predictions
-  - Run LLM verification
-  - View LLM vs manual verification results
-
-- **Metrics & Charts**
-
-  - Total predictions
-  - Validated / unvalidated
-  - Accuracy
-
-### Main Tabs
-
-- **Browse Predictions**: Filter, sort, and validate predictions.
-- **Analytics**: View interactive charts and timeline.
-- **All Tweets**: Browse all tweets with search and engagement metrics.
-- **Settings**: Configuration, keywords, and export data options.
-
----
-
-## Notes
-
-- Predictions extraction relies on LangExtract examples and prompt configuration.
-- Visualization uses Plotly and Streamlit for interactivity.
-- Manual validation and LLM verification updates are reflected immediately.
-
----
-
-## Author
-
-Created by Your Name
+```
+tweet-prediction-analyzer/
+│
+├── app.py                  # Main Streamlit app
+├── main.py                 # TweetPredictionAnalyzer class and extraction logic
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables
+├── README.md               # Documentation
+├── outputs/                # Folder for predictions and JSON files
+└── data/                   # CSV files (tweets)
+```
 
 ---
 

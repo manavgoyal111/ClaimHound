@@ -1,10 +1,50 @@
-import streamlit as st
+import os
 import json
+import csv
 import pandas as pd
+from dotenv import load_dotenv
+import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from collections import Counter
-import os
+
+# Load environment variables
+load_dotenv()
+input_folder = os.getenv("INPUT_FOLDER", "data")
+
+
+# Function to convert selected CSV to JSON
+def convert_csv_to_json(csv_file):
+    input_path = os.path.join(input_folder, csv_file)
+    output_path = "tweets.json"
+
+    with open(input_path, mode="r", encoding="utf-8-sig") as csv_file_obj:
+        csv_reader = csv.DictReader(csv_file_obj)
+        data = [row for row in csv_reader]
+
+    with open(output_path, mode="w", encoding="utf-8") as json_file:
+        json.dump(data, json_file, indent=4, ensure_ascii=False)
+
+    return output_path
+
+
+# Streamlit UI
+st.sidebar.header("📂 CSV to JSON Converter")
+csv_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
+
+if csv_files:
+    selected_file = st.sidebar.selectbox("Select CSV File", csv_files)
+
+    if st.sidebar.button("Convert to JSON"):
+        try:
+            output_file = convert_csv_to_json(selected_file)
+            st.success(
+                f"✅ Successfully converted '{selected_file}' to '{output_file}'"
+            )
+        except Exception as e:
+            st.error(f"❌ Conversion failed: {e}")
+else:
+    st.sidebar.warning(f"No CSV files found in '{input_folder}'")
 
 
 # Load predictions and tweets
@@ -136,3 +176,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Give option to select file from data folder in left navbar
+# Inprove extraction
+# Get MIT licence
+# Handle media also
+# Add subcription model to see all predictions
