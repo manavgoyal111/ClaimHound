@@ -1,7 +1,5 @@
 import json
 import os
-import re
-from datetime import datetime
 from dotenv import load_dotenv
 import langextract as lx
 import textwrap
@@ -258,7 +256,7 @@ def create_visualization(
                 char_interval=char_interval,
                 alignment_status=alignment_status,
                 extraction_index=pred.get("extractionIndex", 0),
-                attributes=pred
+                attributes=pred,
             )
             # Create document (metadata is not supported in AnnotatedDocument)
             doc = lx.data.AnnotatedDocument(
@@ -279,14 +277,22 @@ def create_visualization(
         print(f"Error creating visualization: {str(e)}")
 
 
-if __name__ == "__main__":
-    print("🚀 Starting Tweet Prediction Extraction")
-    print("=" * 50)
-    # Process tweets
-    input_file = "tweets.json"
-    output_file = "predictions.json"
-    # Extract predictions & create visualization
+# Define a function to export predictions
+def extract_predictions(input_file="tweets.json", output_file="predictions.json"):
+    """Process tweets and return extracted predictions as a list"""
     process_tweets(input_file, output_file)
     if os.path.exists(output_file):
+        # Optional: create visualization
         create_visualization(output_file)
-    print("\n✅ Process completed!")
+        # Load predictions and return
+        import json
+
+        with open(output_file, "r", encoding="utf-8") as f:
+            predictions = json.load(f)
+        return predictions
+    return []
+
+
+if __name__ == "__main__":
+    extracted = extract_predictions()
+    print(f"Extracted {len(extracted)} predictions")

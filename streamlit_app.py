@@ -1,50 +1,18 @@
 import os
-import json
 import csv
+import json
+import subprocess
 import pandas as pd
 from dotenv import load_dotenv
+from collections import Counter
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
-from collections import Counter
+from convert_to_json import convert_csv_to_json
+from extract_prediction import extract_predictions
 
 # Load environment variables
 load_dotenv()
-input_folder = os.getenv("INPUT_FOLDER", "data")
-
-
-# Function to convert selected CSV to JSON
-def convert_csv_to_json(csv_file):
-    input_path = os.path.join(input_folder, csv_file)
-    output_path = "tweets.json"
-
-    with open(input_path, mode="r", encoding="utf-8-sig") as csv_file_obj:
-        csv_reader = csv.DictReader(csv_file_obj)
-        data = [row for row in csv_reader]
-
-    with open(output_path, mode="w", encoding="utf-8") as json_file:
-        json.dump(data, json_file, indent=4, ensure_ascii=False)
-
-    return output_path
-
-
-# Streamlit UI
-st.sidebar.header("📂 CSV to JSON Converter")
-csv_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
-
-if csv_files:
-    selected_file = st.sidebar.selectbox("Select CSV File", csv_files)
-
-    if st.sidebar.button("Convert to JSON"):
-        try:
-            output_file = convert_csv_to_json(selected_file)
-            st.success(
-                f"✅ Successfully converted '{selected_file}' to '{output_file}'"
-            )
-        except Exception as e:
-            st.error(f"❌ Conversion failed: {e}")
-else:
-    st.sidebar.warning(f"No CSV files found in '{input_folder}'")
 
 
 # Load predictions and tweets
@@ -90,19 +58,61 @@ def main():
 
     predictions, tweets = load_data()
 
+    # Sidebar controls
+    with st.sidebar:
+        st.header("⚙️ Actions")
+
+        # CSV to JSON conversion
+        st.markdown("### Convert CSV to JSON")
+        input_folder = os.getenv("INPUT_FOLDER", "data")
+        if os.path.exists(input_folder):
+            csv_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
+            selected_csv = st.selectbox("Select CSV file", csv_files)
+
+            if st.button("Convert to JSON"):
+                try:
+                    output_path = convert_csv_to_json(
+                        os.path.join(input_folder, selected_csv)
+                    )
+                    st.success(f"CSV converted successfully -> {output_path}")
+                except Exception as e:
+                    st.error(f"Conversion failed: {e}")
+        else:
+            st.warning(f"Input folder '{input_folder}' does not exist")
+
+        # Extraction button
+        st.markdown("### Extract Predictions")
+        if st.button("Start Extraction"):
+            if not tweets:
+                st.warning("No tweets available. Convert CSV first.")
+            else:
+                with st.spinner("Extracting predictions..."):
+                    try:
+                        # Instead of looping manually, call your function once
+                        predictions = extract_predictions(
+                            input_file="tweets.json", output_file="predictions.json"
+                        )
+                        # Show progress info
+                        st.success(
+                            f"Extraction completed! {len(predictions)} predictions extracted."
+                        )
+                        # Optional: display first few predictions
+                        for pred in predictions[:5]:
+                            st.markdown(
+                                f"- **Tweet:** {pred.get('original_tweet', {}).get('text', '')[:100]}..."
+                            )
+                            st.markdown(
+                                f"  **Prediction:** {pred.get('prediction', '')}"
+                            )
+                    except Exception as e:
+                        st.error(f"Extraction failed: {e}")
+
+    # Display stats and tabs
     if not predictions:
         st.warning("No predictions available. Ensure 'predictions.json' exists.")
         return
 
     stats = calculate_stats(predictions)
-
-    # Sidebar stats
-    with st.sidebar:
-        st.header("📊 Summary Stats")
-        st.metric("Total Predictions", stats["total"])
-        st.metric("Validated", stats["validated"])
-        st.metric("Correct", stats["correct"])
-        st.metric("Accuracy", f"{stats['accuracy']:.1f}%")
 
     tab1, tab2 = st.tabs(["🔍 Browse Predictions", "📈 Analytics"])
 
@@ -129,7 +139,6 @@ def main():
         col1, col2 = st.columns(2)
 
         with col1:
-            # Validation status pie chart
             fig_pie = go.Figure(
                 data=[
                     go.Pie(
@@ -146,7 +155,6 @@ def main():
             st.plotly_chart(fig_pie, use_container_width=True)
 
         with col2:
-            # Accuracy chart
             if stats["validated"] > 0:
                 fig_acc = go.Figure(
                     data=[
@@ -169,7 +177,6 @@ def main():
         df_time = pd.DataFrame(list(date_counts.items()), columns=["Date", "Count"])
         df_time["Date"] = pd.to_datetime(df_time["Date"])
         df_time = df_time.sort_values("Date")
-
         fig_time = px.line(df_time, x="Date", y="Count", title="Predictions Over Time")
         st.plotly_chart(fig_time, use_container_width=True)
 
