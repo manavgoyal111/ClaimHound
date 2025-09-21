@@ -1,11 +1,10 @@
 import os
-import csv
 import json
-import subprocess
 import pandas as pd
 from dotenv import load_dotenv
 from collections import Counter
 import streamlit as st
+import streamlit.components.v1 as components
 import plotly.express as px
 import plotly.graph_objects as go
 from convert_to_json import convert_csv_to_json
@@ -14,10 +13,14 @@ from extract_prediction import extract_predictions
 # Load environment variables
 load_dotenv()
 
+viz_file = "predictions_viz.html"
+input_file = "tweets.json"
+output_file = "predictions.json"
+
 
 # Load predictions and tweets
 @st.cache_data
-def load_data(predictions_file="predictions.json", tweets_file="tweets.json"):
+def load_data(predictions_file=output_file, tweets_file=input_file):
     st.cache_data.clear()
     if os.path.exists(predictions_file):
         with open(predictions_file, "r", encoding="utf-8") as f:
@@ -56,20 +59,58 @@ def calculate_stats(predictions):
 def main():
     st.set_page_config(page_title="Claim Hound", page_icon="✨", layout="wide")
     st.title("🔮 Tweet Prediction Analyzer")
+    st.markdown(
+        """
+        <style>
+            header[data-testid="stHeader"] {
+                background: white !important;
+                color: black !important;
+            }
+            header[data-testid="stHeader"]::before {
+                content: none;
+            }
+            header[data-testid="stHeader"] * {
+                color: black !important;
+            }
+        
+            .stApp {
+                background-color: white !important;
+                color: black !important;
+            }
+            section[data-testid="stSidebar"] {
+                background-color: white !important;
+                color: black !important;
+            }
+            
+            button[kind="primary"], button[kind="secondary"] {
+                background-color: #1E88E5 !important;
+                color: white !important;
+                border-radius: 8px !important;
+                border: none !important;
+            }
+            button[kind="primary"]:hover, button[kind="secondary"]:hover {
+                background-color: #1565C0 !important;
+                color: white !important;
+            }
+
+            p {
+                color: black;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
     predictions, tweets = load_data()
-
     # Sidebar controls
     with st.sidebar:
-        st.header("⚙️ Actions")
-
+        st.header("⚙️ ClaimHound")
         # CSV to JSON conversion
         st.markdown("### Convert CSV to JSON")
         input_folder = os.getenv("INPUT_FOLDER", "data")
         if os.path.exists(input_folder):
             csv_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
             selected_csv = st.selectbox("Select CSV file", csv_files)
-
             if st.button("Convert to JSON"):
                 try:
                     output_path = convert_csv_to_json(
@@ -90,9 +131,7 @@ def main():
                 with st.spinner("Extracting predictions..."):
                     try:
                         # Instead of looping manually, call your function once
-                        predictions = extract_predictions(
-                            input_file="tweets.json", output_file="predictions.json"
-                        )
+                        predictions = extract_predictions(input_file, output_file)
                         # Show progress info by displaying first few extracted predictions
                         if predictions:
                             st.success(
@@ -107,11 +146,9 @@ def main():
     if not predictions:
         st.warning("No predictions available. Ensure 'predictions.json' exists.")
         return
-
-    stats = calculate_stats(predictions)
-
-    tab1, tab2 = st.tabs(["🔍 Browse Predictions", "📈 Analytics"])
-
+    tab1, tab2, tab3 = st.tabs(
+        ["🔍 Browse Predictions", "📈 Analytics", "📊 Visualization"]
+    )
     with tab1:
         st.header("Prediction Browser")
         for pred in predictions:
@@ -133,7 +170,7 @@ def main():
     with tab2:
         st.header("Analytics")
         col1, col2 = st.columns(2)
-
+        stats = calculate_stats(predictions)
         with col1:
             fig_pie = go.Figure(
                 data=[
@@ -176,12 +213,22 @@ def main():
         fig_time = px.line(df_time, x="Date", y="Count", title="Predictions Over Time")
         st.plotly_chart(fig_time, use_container_width=True)
 
+    with tab3:
+        if os.path.exists(viz_file):
+            with open(viz_file, "r", encoding="utf-8") as f:
+                html_content = f.read()
+            st.subheader("📊 Predictions Visualization")
+            components.html(html_content, height=600, scrolling=True)
+        else:
+            st.warning("No predictions were extracted.")
+
 
 if __name__ == "__main__":
     main()
 
 
 # Improve Extraction & UI
+
 # Get MIT licence
 # Handle media also
 # Add subcription model to see all predictions otherwise only top 100
