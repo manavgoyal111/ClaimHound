@@ -23,9 +23,9 @@ def create_prediction_examples():
                     extraction_class="economics",
                     extraction_text="outsource to Pakistanis and Bangladeshis",
                     attributes={
-                        "location": "Global",
-                        "prediction": "America funds Pakistanis and Bangladeshis bots.",
-                        "justification": "To control India.",
+                        "location": "India, Pakistan, Bangladesh, USA",
+                        "prediction": "America funds Pakistanis and Bangladeshis bots against India.",
+                        "justification": "Use them to control India.",
                     },
                 ),
                 lx.data.Extraction(
@@ -34,7 +34,7 @@ def create_prediction_examples():
                     attributes={
                         "location": "Global",
                         "prediction": "America is trying to control India using Pakistanis and Bangladeshis.",
-                        "justification": "They tried for 1000 years, so foolishly still trying.",
+                        "justification": "They tried for 1000 years, so thinking they can still do it.",
                     },
                 ),
             ],
@@ -46,9 +46,9 @@ def create_prediction_examples():
                     extraction_class="politics",
                     extraction_text="the hate crimes against Indian",
                     attributes={
-                        "location": "america",
-                        "prediction": "The hate crimes against Indian ethnic people in the US is going to increase",
-                        "justification": "Influential Indian Americans sit quietly not speaking out when one of their people is attacked",
+                        "location": "USA, India",
+                        "prediction": "The hate crimes against Indian ethnic people in the US is going to increase.",
+                        "justification": "Influential Indian Americans sit quietly not speaking out when one of their people is attacked.",
                     },
                 )
             ],
@@ -60,17 +60,17 @@ def create_prediction_examples():
                     extraction_class="war",
                     extraction_text="Europe into a war with Russia",
                     attributes={
-                        "location": "europe",
-                        "prediction": "The US is soon going to put Europe into a war with Russia",
-                        "justification": "Russia severely contained fighting directly. Europe totally wasted. The economic mess this war creates weakening China badly.",
+                        "location": "Europe, Russia, USA",
+                        "prediction": "The US is soon going to put Europe into a war with Russia by March 2026.",
+                        "justification": "Russia will be severely contained fighting directly. Europe totally wasted and dependent on US. The economic mess this war creates weakening China badly.",
                     },
                 ),
                 lx.data.Extraction(
                     extraction_class="war",
                     extraction_text="conditions for a revolution to overthrow the CCP",
                     attributes={
-                        "location": "china",
-                        "prediction": "EU-Russia conflict without US involvement will weaken china creating conditions to overthrow CCP.",
+                        "location": "China",
+                        "prediction": "EU-Russia conflict without US involvement will weaken china creating conditions to overthrow CCP..",
                         "justification": "The economic mess this war creates weakens China badly.",
                     },
                 ),
@@ -91,8 +91,8 @@ def create_prediction_prompt():
         INSTRUCTIONS:
         - List every main claim, idea, or prediction the author expresses—including predictions, causal analysis, statements based on intuition, conspiracy theories, or claims about past, present, or future.
         - For each point, extract:
-            - Domain/class (e.g. politics, economics, war, astrology, technology, history, etc.)
-            - The main claim/point/idea/prediction as a clear summary.
+            - Domain/class (e.g. politics, economics, war, astrology, technology, history, culture, society, etc.)
+            - The main claim/point/idea/prediction as a clear summary, include date mentioned.
             - The justification or reasoning the author gives (if any)—why are they making this claim?
             - Location/Entity (if multiple then comma-separated, e.g. USA, India, Global, China, Europe, etc.)
         """
