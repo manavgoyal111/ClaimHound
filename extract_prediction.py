@@ -1,50 +1,77 @@
-import json
 import os
-from collections import defaultdict
+import json
 from dotenv import load_dotenv
-import langextract as lx
+from collections import defaultdict
 import textwrap
+import langextract as lx
 
 # Load environment variables
 load_dotenv()
+
+input_file = "tweets.json"
+output_file = "predictions.json"
+output_html = "predictions_viz.html"
 
 
 def create_prediction_examples():
     """Create few-shot examples for prediction extraction"""
     examples = [
         lx.data.ExampleData(
-            text="By 2030, electric vehicles will comprise 50% of all new car sales globally. The infrastructure is rapidly expanding.",
+            text="The actual bots are Pakistani. The Chinese and Russians don't care this much about America. They outsource to Pakistanis and Bangladeshis who America supports foolishly thinking using them they can control India forgetting that for 1000 years they tried to control 🇮🇳 and failed.",
             extractions=[
                 lx.data.Extraction(
-                    extraction_class="business",
-                    extraction_text="electric vehicles",
+                    extraction_class="economics",
+                    extraction_text="outsource to Pakistanis and Bangladeshis",
                     attributes={
-                        "location": "global",
-                        "prediction": "Electric vehicles will comprise 50% of all new car sales globally by 2030",
-                        "justification": "The infrastructure is rapidly expanding",
+                        "location": "Global",
+                        "prediction": "America funds Pakistanis and Bangladeshis bots.",
+                        "justification": "To control India.",
+                    },
+                ),
+                lx.data.Extraction(
+                    extraction_class="politics",
+                    extraction_text="control India",
+                    attributes={
+                        "location": "Global",
+                        "prediction": "America is trying to control India using Pakistanis and Bangladeshis.",
+                        "justification": "They tried for 1000 years, so foolishly still trying.",
+                    },
+                ),
+            ],
+        ),
+        lx.data.ExampleData(
+            text="Yesterday's gruesome beheading of Indian American motel owner is so sick and stomach churning to see.\n\nBut not at all that shocking, given we all knew what was coming and is only going to increase - the hate crimes against Indian ethnic people in the US.\n\nSuch violence is only going to increase because influential Indian Americans sit quietly not speaking out when one of their people is attacked like say Jews, Muslims, Blacks, and east Asians do.\n\nAll the SV Tech Bros and Indian American millionaires are quiet on this murder of a fellow entrepreneur, but are speaking out against Charlie Kirk's gruesome shooting as that's the mainstream America's topic.\n\nMr. Chandra was killed just because he asked someone to translate what the murderer was saying about using a washing machine instead of directly listening to him it seems. \n\nMy heart goes out to Chandra ji's family who witnessed it. Can't imagine what they are going through right now.",
+            extractions=[
+                lx.data.Extraction(
+                    extraction_class="politics",
+                    extraction_text="the hate crimes against Indian",
+                    attributes={
+                        "location": "america",
+                        "prediction": "The hate crimes against Indian ethnic people in the US is going to increase",
+                        "justification": "Influential Indian Americans sit quietly not speaking out when one of their people is attacked",
                     },
                 )
             ],
         ),
         lx.data.ExampleData(
-            text="💥Nations are reversing the two bucket theory which kept the dollar going. This will change everything.",
+            text="The US is soon going to put Europe into a war with Russia it doesn't need to fight. By March of next year, there's great chance of a EU-Russia conflict without US involvement as part of NATO.\n\nThey tried using Ukraine as a proxy to pull Russia into a war and weaken it. Russia did get very occupied in the war but doesn't seem weakened. \n\nThey tried stopping the war and bringing Russia into western fold to focus against China. Russia is not taking any deals forced on it with arrogance.\n\nSo now they want to make all of Europe their proxy to fight Russia. They even have a time limit: March 2026. \n\nThey get three birds in one stone of this conflict:\n\n1) Russia severely contained fighting big European powers directly. \n2) Europe totally wasted and a dependent vassal of the US. \n3) The economic mess this war creates weakening China badly, creating perfect conditions for a revolution to overthrow the CCP. \n\nNow tell me, is my analysis far fetched conspiracy or a prediction that will come true?",
             extractions=[
                 lx.data.Extraction(
-                    extraction_class="other",
-                    extraction_text="two bucket theory",
+                    extraction_class="war",
+                    extraction_text="Europe into a war with Russia",
                     attributes={
-                        "location": "global",
-                        "prediction": "Two bucket theory will reverse",
-                        "justification": "Nations are reversing",
+                        "location": "europe",
+                        "prediction": "The US is soon going to put Europe into a war with Russia",
+                        "justification": "Russia severely contained fighting directly. Europe totally wasted. The economic mess this war creates weakening China badly.",
                     },
                 ),
                 lx.data.Extraction(
-                    extraction_class="economics",
-                    extraction_text="dollar",
+                    extraction_class="war",
+                    extraction_text="conditions for a revolution to overthrow the CCP",
                     attributes={
-                        "location": "global",
-                        "prediction": "Dollar going because of two bucket theory",
-                        "justification": "Nations are reversing",
+                        "location": "china",
+                        "prediction": "EU-Russia conflict without US involvement will weaken china creating conditions to overthrow CCP.",
+                        "justification": "The economic mess this war creates weakens China badly.",
                     },
                 ),
             ],
@@ -57,37 +84,29 @@ def create_prediction_prompt():
     """Create the extraction prompt"""
     prompt = textwrap.dedent(
         """
-    Extract predictions, claims, or statements about future events from the text.
-    If multiple predictions exist in one text, extract each separately.
-    
-    WHAT TO EXTRACT:
-    - Predictions about what will happen in the future, or what happened in past
-    - Claims about ongoing changes or trends
-    - Statements about expected outcomes or consequences
-    
-    CLASSIFICATION RULES:
-    - Use "politics" for political/economic claims and policy-related statements
-    - Use "economics" for market, financial, or economic predictions
-    - Use "technology" for tech-related forecasts
-    - Use "social" for society and culture related claims
-    
-    ATTRIBUTES TO DETERMINE:
-    - location: Geographic scope (global, country name, region, or "unknown")
-    - prediction: The actual prediction or claim
-    - justification: Any reasoning or explanation provided in the text
-    """
+        You are an information extraction system.
+        Given a tweet (or a short text post), extract all significant author claims, ideas, predictions, or analytic points.
+        The author may use logical reasoning, intuition, conspiracy theories, cashflow or astrology-based reasoning, or reference past events to make their points.
+        
+        INSTRUCTIONS:
+        - List every main claim, idea, or prediction the author expresses—including predictions, causal analysis, statements based on intuition, conspiracy theories, or claims about past, present, or future.
+        - For each point, extract:
+            - Domain/class (e.g. politics, economics, war, astrology, technology, history, etc.)
+            - The main claim/point/idea/prediction as a clear summary.
+            - The justification or reasoning the author gives (if any)—why are they making this claim?
+            - Location/Entity (if multiple then comma-separated, e.g. USA, India, Global, China, Europe, etc.)
+        """
     )
     return prompt
 
 
-def process_tweets(input_file="tweets.json", output_file="predictions.json"):
+def process_tweets(input_file=input_file, output_file=output_file):
     """Process tweets and extract predictions"""
 
     # Load tweets from JSON file
     with open(input_file, "r", encoding="utf-8") as f:
         tweets = json.load(f)
     print(f"Loaded {len(tweets)} tweets from {input_file}")
-    # Create prompt and examples
     prompt = create_prediction_prompt()
     examples = create_prediction_examples()
     extracted_predictions = []
@@ -98,13 +117,8 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
     for i, tweet in enumerate(tweets):
         tweet_text = tweet.get("tweetText", "")
         tweet_id = tweet.get("id", "")
-        created_at = tweet.get("createdAt", "")
-
         try:
-            print(
-                f"Processing tweet {i+1}/{len(tweets)} (ID: {tweet_id})"
-            )
-            # Extract predictions using LangExtract
+            print(f"Processing tweet {i+1}/{len(tweets)} (ID: {tweet_id})")
             result = lx.extract(
                 text_or_documents=tweet_text,
                 prompt_description=prompt,
@@ -116,15 +130,13 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
             )
             # Normalize result to list of documents
             documents = []
-            if hasattr(result, "documents"):
-                documents = result.documents
-            elif isinstance(result, lx.data.AnnotatedDocument):
+            if isinstance(result, lx.data.AnnotatedDocument):
                 documents = [result]
             elif isinstance(result, list):
                 documents = result
             if documents:
                 for document in documents:
-                    if hasattr(document, "extractions") and document.extractions:
+                    if hasattr(document, "extractions"):
                         for extraction in document.extractions:
                             prediction = {
                                 "extraction_class": extraction.extraction_class,
@@ -147,12 +159,9 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
                                     if extraction.alignment_status
                                     else None
                                 ),
-                                "extractionIndex": getattr(
-                                    extraction, "extraction_index", None
-                                ),
                                 "location": extraction.attributes.get("location", ""),
                                 "prediction": extraction.attributes.get(
-                                    "prediction", extraction.extraction_text
+                                    "prediction", ""
                                 ),
                                 "justification": extraction.attributes.get(
                                     "justification", ""
@@ -162,7 +171,7 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
                                     "text": tweet_text,
                                     "author": tweet.get("tweetAuthor", ""),
                                     "handle": tweet.get("handle", ""),
-                                    "created_at": created_at,
+                                    "created_at": tweet.get("createdAt", ""),
                                     "url": tweet.get("tweetURL", ""),
                                     "likes": tweet.get("likeCount", ""),
                                     "retweets": tweet.get("retweetCount", ""),
@@ -177,7 +186,6 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
                         print(f"  - No extractions found in document")
             else:
                 print(f"  - No results returned")
-
             processed_count += 1
         except Exception as e:
             error_count += 1
@@ -229,13 +237,7 @@ def process_tweets(input_file="tweets.json", output_file="predictions.json"):
         print(f"❌ Error saving results: {str(e)}")
 
 
-import json
-import langextract as lx
-
-
-def create_visualization(
-    predictions_file="predictions.json", output_html="predictions_viz.html"
-):
+def create_visualization(predictions_file=output_file, output_html=output_html):
     """
     Create a LangExtract HTML visualization for all predictions in predictions_file.
     Handles multiple extractions across multiple tweets/documents.
@@ -251,7 +253,9 @@ def create_visualization(
         # Group predictions by tweet ID
         tweet_groups = defaultdict(list)
         for pred in predictions:
-            tweet_id = pred.get("original_tweet", {}).get("id", f"doc_{pred.get('document_id')}")
+            tweet_id = pred.get("original_tweet", {}).get(
+                "id", f"doc_{pred.get('document_id')}"
+            )
             tweet_groups[tweet_id].append(pred)
 
         documents = []
@@ -266,33 +270,28 @@ def create_visualization(
                 char_start = pred.get("charInterval", {}).get("start", 0)
                 char_end = pred.get("charInterval", {}).get("end", len(extraction_text))
                 char_interval = lx.data.CharInterval(char_start, char_end)
-
                 alignment_status_str = pred.get("alignmentStatus") or "MATCH_EXACT"
                 alignment_status = getattr(
                     lx.data.AlignmentStatus,
                     alignment_status_str.upper(),
-                    lx.data.AlignmentStatus.MATCH_EXACT
+                    lx.data.AlignmentStatus.MATCH_EXACT,
                 )
-
                 extraction_attrs = {
                     "location": pred.get("location", ""),
                     "prediction": pred.get("prediction", ""),
-                    "justification": pred.get("justification", "")
+                    "justification": pred.get("justification", ""),
                 }
-
                 extraction = lx.data.Extraction(
                     extraction_class=pred.get("extraction_class", "Other").capitalize(),
                     extraction_text=extraction_text,
                     char_interval=char_interval,
                     alignment_status=alignment_status,
                     extraction_index=idx,
-                    attributes=extraction_attrs
+                    attributes=extraction_attrs,
                 )
                 extractions.append(extraction)
-
             doc = lx.data.AnnotatedDocument(text=text, extractions=extractions)
             documents.append(doc)
-
         if not documents:
             print("No valid documents to visualize.")
             return
@@ -301,25 +300,21 @@ def create_visualization(
         jsonl_file = os.path.splitext(predictions_file)[0] + ".jsonl"
         lx.io.save_annotated_documents(documents, output_name=jsonl_file)
         print(f"Saved JSONL for visualization: {jsonl_file}")
-
         # Generate HTML visualization
         html_content = lx.visualize("test_output/" + jsonl_file)
         with open(output_html, "w", encoding="utf-8") as f:
             f.write(html_content)
-
         print(f"✅ Visualization created successfully: {output_html}")
         print(f"📄 JSONL source saved: {jsonl_file}")
-
     except Exception as e:
         print(f"❌ Error creating visualization: {str(e)}")
 
 
-# Define a function to export predictions
-def extract_predictions(input_file="tweets.json", output_file="predictions.json"):
+def extract_predictions(input_file=input_file, output_file=output_file):
     """Process tweets and return extracted predictions as a list"""
     process_tweets(input_file, output_file)
+    # create_visualization()
     if os.path.exists(output_file):
-        create_visualization(output_file)
         with open(output_file, "r", encoding="utf-8") as f:
             predictions = json.load(f)
         return predictions

@@ -11,96 +11,91 @@ load_dotenv()
 # 1. Define a concise prompt
 prompt = textwrap.dedent(
     """
-    Extract predictions about future events from the text.
-
-    A prediction is a statement about what will happen, might happen, or is expected to happen in the future.
-
-    Rules:
-    - Only extract actual predictions, not opinions about past/present events
-    - Use exact text from the source for extraction_text
-    - Set yearMade to the current year (2025) unless specified otherwise
-    - Set yearExpected to the year when the predicted event should occur
-    - Set measurable to True if the prediction can be objectively verified
-    - Set certainty to True if the prediction is stated with confidence, False if speculative
-    - Set confidence score (0.0-1.0) based on how likely this is to be a genuine prediction
-    - Categorize domain: technology, politics, economics, social, war, sports, climate, etc.
-    - Include any reasoning/justification provided for the prediction
-    - If no predictions are found, return empty extractions list
+    You are an information extraction system.
+    Given a tweet (or a short text post), extract all significant author claims, ideas, predictions, or analytic points.
+    The author may use logical reasoning, intuition, conspiracy theories, cashflow or astrology-based reasoning, or reference past events to make their points.
+    
+    INSTRUCTIONS:
+    - List every main claim, idea, or prediction the author expresses—including predictions, causal analysis, statements based on intuition, conspiracy theories, or claims about past, present, or future.
+    - For each point, extract:
+        - Domain/class (e.g. politics, economics, war, astrology, technology, history, etc.)
+        - The main claim/point/idea/prediction as a clear summary.
+        - The justification or reasoning the author gives (if any)—why are they making this claim?
+        - Location/Entity (if multiple then comma-separated, e.g. USA, India, Global, China, Europe, etc.)
     """
 )
 
 # 2. Provide a high-quality example to guide the model
 examples = [
     lx.data.ExampleData(
-        text=(
-            "Nations are reversing the two bucket theory which kept the dollar going. This will change everything."
-        ),
+        text="The actual bots are Pakistani. The Chinese and Russians don't care this much about America. They outsource to Pakistanis and Bangladeshis who America supports foolishly thinking using them they can control India forgetting that for 1000 years they tried to control 🇮🇳 and failed.",
         extractions=[
             lx.data.Extraction(
                 extraction_class="economics",
-                extraction_text="reversing the two bucket theory",
+                extraction_text="outsource to Pakistanis and Bangladeshis",
                 attributes={
-                    "location": "global",
-                    "prediction": "two bucket theory kept dollar going",
+                    "location": "Global",
+                    "prediction": "America funds Pakistanis and Bangladeshis bots.",
+                    "justification": "To control India.",
+                },
+            ),
+            lx.data.Extraction(
+                extraction_class="politics",
+                extraction_text="control India",
+                attributes={
+                    "location": "Global",
+                    "prediction": "America is trying to control India using Pakistanis and Bangladeshis.",
+                    "justification": "They tried for 1000 years, so foolishly still trying.",
+                },
+            ),
+        ],
+    ),
+    lx.data.ExampleData(
+        text="Yesterday's gruesome beheading of Indian American motel owner is so sick and stomach churning to see.\n\nBut not at all that shocking, given we all knew what was coming and is only going to increase - the hate crimes against Indian ethnic people in the US.\n\nSuch violence is only going to increase because influential Indian Americans sit quietly not speaking out when one of their people is attacked like say Jews, Muslims, Blacks, and east Asians do.\n\nAll the SV Tech Bros and Indian American millionaires are quiet on this murder of a fellow entrepreneur, but are speaking out against Charlie Kirk's gruesome shooting as that's the mainstream America's topic.\n\nMr. Chandra was killed just because he asked someone to translate what the murderer was saying about using a washing machine instead of directly listening to him it seems. \n\nMy heart goes out to Chandra ji's family who witnessed it. Can't imagine what they are going through right now.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="politics",
+                extraction_text="the hate crimes against Indian",
+                attributes={
+                    "location": "america",
+                    "prediction": "The hate crimes against Indian ethnic people in the US is going to increase",
+                    "justification": "Influential Indian Americans sit quietly not speaking out when one of their people is attacked",
                 },
             )
         ],
     ),
     lx.data.ExampleData(
-        text=(
-            "I think the stock market might crash next year due to inflation concerns, but I'm not sure."
-        ),
+        text="The US is soon going to put Europe into a war with Russia it doesn't need to fight. By March of next year, there's great chance of a EU-Russia conflict without US involvement as part of NATO.\n\nThey tried using Ukraine as a proxy to pull Russia into a war and weaken it. Russia did get very occupied in the war but doesn't seem weakened. \n\nThey tried stopping the war and bringing Russia into western fold to focus against China. Russia is not taking any deals forced on it with arrogance.\n\nSo now they want to make all of Europe their proxy to fight Russia. They even have a time limit: March 2026. \n\nThey get three birds in one stone of this conflict:\n\n1) Russia severely contained fighting big European powers directly. \n2) Europe totally wasted and a dependent vassal of the US. \n3) The economic mess this war creates weakening China badly, creating perfect conditions for a revolution to overthrow the CCP. \n\nNow tell me, is my analysis far fetched conspiracy or a prediction that will come true?",
         extractions=[
             lx.data.Extraction(
-                extraction_class="economics",
-                extraction_text="stock market might crash",
+                extraction_class="war",
+                extraction_text="Europe into a war with Russia",
                 attributes={
-                    "location": "india",
-                    "prediction": "stock market might crash",
-                    "justification": "crash due to inflation",
+                    "location": "europe",
+                    "prediction": "The US is soon going to put Europe into a war with Russia",
+                    "justification": "Russia severely contained fighting directly. Europe totally wasted. The economic mess this war creates weakening China badly.",
                 },
-            )
-        ],
-    ),
-    lx.data.ExampleData(
-        text="By 2030, electric vehicles will comprise 50% of all new car sales globally. The infrastructure is rapidly expanding.",
-        extractions=[
+            ),
             lx.data.Extraction(
-                extraction_class="commerce",
-                extraction_text="electric vehicles will comprise 50% of all new car sales globally",
+                extraction_class="war",
+                extraction_text="conditions for a revolution to overthrow the CCP",
                 attributes={
-                    "location": "global",
-                    "prediction": "electric vehicles will comprise 50% of all new car sales globally",
-                    "justification": "The infrastructure is rapidly expanding",
-                    "yearExpected": "2030",
-                    "measurable": True,
+                    "location": "china",
+                    "prediction": "EU-Russia conflict without US involvement will weaken china creating conditions to overthrow CCP.",
+                    "justification": "The economic mess this war creates weakens China badly.",
                 },
-            )
-        ],
-    ),
-    lx.data.ExampleData(
-        text="💥Nations are reversing the two bucket theory which kept the dollar going. This will change everything.",
-        extractions=[
-            lx.data.Extraction(
-                extraction_class="economics",
-                extraction_text="Nations reversing two bucket theory will change everything",
-                attributes={
-                    "location": "global",
-                    "prediction": "Dollar will go down",
-                    "justification": "Two bucket theory kept dollar going, which is being reversed",
-                    "measurable": False,
-                },
-            )
+            ),
         ],
     ),
 ]
 
 # 3. Run the extraction on your input text
-input_text = "Technology cannot eat itself.\n\nYou need a real human to buy products and services to make profits.\n\nIn a scenario where companies will fail to employ masses citing tech automation, the masses will NOT BUY their products and prefer to barter with neighbor or empower some nearby entrepreneur."
+input_text = "The actual bots are Pakistani. The Chinese and Russians don't care this much about America. They outsource to Pakistanis and Bangladeshis who America supports foolishly thinking using them they can control India forgetting that for 1000 years they tried to control 🇮🇳 and failed."
+
 result = lx.extract(
     text_or_documents=input_text,
     prompt_description=prompt,
     examples=examples,
-    model_id="gemini-2.5-pro",
+    model_id="gemini-1.5-flash",
 )
 print(result)

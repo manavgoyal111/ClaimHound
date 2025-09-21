@@ -13,7 +13,7 @@ from extract_prediction import extract_predictions
 # Load environment variables
 load_dotenv()
 
-viz_file = "predictions_viz.html"
+viz_file = "display.html"
 input_file = "tweets.json"
 output_file = "predictions.json"
 
@@ -27,13 +27,11 @@ def load_data(predictions_file=output_file, tweets_file=input_file):
             predictions = json.load(f)
     else:
         predictions = []
-
     if os.path.exists(tweets_file):
         with open(tweets_file, "r", encoding="utf-8") as f:
             tweets = json.load(f)
     else:
         tweets = []
-
     return predictions, tweets
 
 
@@ -102,11 +100,13 @@ def main():
     )
 
     predictions, tweets = load_data()
+    df = pd.json_normalize(predictions, sep="_")
+    df["original_tweet_created_at"] = pd.to_datetime(df["original_tweet_created_at"])
     # Sidebar controls
     with st.sidebar:
-        st.header("⚙️ ClaimHound")
-        # CSV to JSON conversion
-        st.markdown("### Convert CSV to JSON")
+        st.header("ClaimHound")
+        # CSV to JSON button
+        st.markdown("#### 1. Convert CSV to JSON")
         input_folder = os.getenv("INPUT_FOLDER", "data")
         if os.path.exists(input_folder):
             csv_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
@@ -123,7 +123,7 @@ def main():
             st.warning(f"Input folder '{input_folder}' does not exist")
 
         # Extraction button
-        st.markdown("### Extract Predictions")
+        st.markdown("#### 2. Extract Predictions")
         if st.button("Start Extraction"):
             if not tweets:
                 st.warning("No tweets available. Convert CSV first.")
@@ -144,91 +144,106 @@ def main():
 
     # Display stats and tabs
     if not predictions:
-        st.warning("No predictions available. Ensure 'predictions.json' exists.")
+        st.warning("No predictions available.")
         return
-    tab1, tab2, tab3 = st.tabs(
-        ["🔍 Browse Predictions", "📈 Analytics", "📊 Visualization"]
-    )
+    tab1, tab2, tab3 = st.tabs(["🔍 Predictions", "📈 Analytics", "📊 All Tweets"])
     with tab1:
-        st.header("Prediction Browser")
-        for pred in predictions:
-            with st.expander(
-                f"{pred.get('original_tweet', {}).get('author', 'Unknown')} - {pred.get('original_tweet', {}).get('created_at', '')}"
-            ):
-                st.markdown(f"**Prediction:** {pred.get('prediction')}  ")
-                st.markdown(
-                    f"**Tweet:** {pred.get('original_tweet', {}).get('text')}  "
-                )
-                st.markdown(f"**Location:** {pred.get('location')}  ")
-                st.markdown(f"**Justification:** {pred.get('justification')}  ")
-                st.markdown(f"**Extraction Class:** {pred.get('extraction_class')}  ")
-                st.markdown(f"**Certainty:** {pred.get('certainty', False)}  ")
-                st.markdown(
-                    f"[View Tweet]({pred.get('original_tweet', {}).get('url')})"
-                )
+        # Filter by Extraction Class
+        classes = ["All"] + sorted(df["extraction_class"].dropna().unique().tolist())
+        selected_class = st.selectbox("Filter by Extraction Class:", classes)
+        # Filter by Location
+        locations = ["All"] + sorted(df["location"].dropna().unique().tolist())
+        selected_location = st.selectbox("Filter by Location:", locations)
+        # Filter by Author
+        authors = ["All"] + sorted(
+            df["original_tweet_author"].dropna().unique().tolist()
+        )
+        selected_author = st.selectbox("Filter by Author:", authors)
+
+        # Apply filters
+        filtered_df = df.copy()
+        if selected_class != "All":
+            filtered_df = filtered_df[filtered_df["extraction_class"] == selected_class]
+        if selected_location != "All":
+            filtered_df = filtered_df[filtered_df["location"] == selected_location]
+        if selected_author != "All":
+            filtered_df = filtered_df[
+                filtered_df["original_tweet_author"] == selected_author
+            ]
+
+        # Display predictions
+        for idx, (_, row) in enumerate(filtered_df.iterrows(), start=1):
+            readable_date = row["original_tweet_created_at"].strftime("%B %d, %Y %H:%M")
+            st.markdown(
+                f"{idx}. **{readable_date}** - [View Tweet]({row['original_tweet_url']})"
+            )
+            st.markdown(f"**Prediction:** {row['prediction']}")
+            st.markdown(f"**Justification:** {row['justification']}")
+            st.markdown("---")
 
     with tab2:
-        st.header("Analytics")
-        col1, col2 = st.columns(2)
-        stats = calculate_stats(predictions)
-        with col1:
-            fig_pie = go.Figure(
-                data=[
-                    go.Pie(
-                        labels=["Validated", "Unvalidated"],
-                        values=[
-                            stats["validated"],
-                            stats["total"] - stats["validated"],
-                        ],
-                        hole=0.3,
-                    )
-                ]
+        # Display raw data
+        st.subheader("Raw Data")
+        st.dataframe(df)
+
+        # Class distribution chart
+        st.subheader("Extraction Class Distribution")
+        class_counts = df["extraction_class"].value_counts()
+        fig_class = px.pie(
+            names=class_counts.index,
+            values=class_counts.values,
+            title="Distribution of Extraction Classes",
+        )
+        st.plotly_chart(fig_class, use_container_width=True)
+
+        # Likes, Retweets, Views by Class
+        st.subheader("Engagement Metrics by Extraction Class")
+        metrics = (
+            df.groupby("extraction_class")
+            .agg(
+                total_likes=pd.NamedAgg(
+                    column="original_tweet_likes", aggfunc=lambda x: x.astype(int).sum()
+                ),
+                total_retweets=pd.NamedAgg(
+                    column="original_tweet_retweets",
+                    aggfunc=lambda x: x.astype(int).sum(),
+                ),
+                total_views=pd.NamedAgg(
+                    column="original_tweet_views", aggfunc=lambda x: x.astype(int).sum()
+                ),
             )
-            fig_pie.update_layout(title="Validation Status")
-            st.plotly_chart(fig_pie, use_container_width=True)
+            .reset_index()
+        )
+        st.dataframe(metrics)
 
-        with col2:
-            if stats["validated"] > 0:
-                fig_acc = go.Figure(
-                    data=[
-                        go.Pie(
-                            labels=["Correct", "Incorrect"],
-                            values=[stats["correct"], stats["incorrect"]],
-                            hole=0.3,
-                            marker_colors=["#00CC96", "#EF553B"],
-                        )
-                    ]
-                )
-                fig_acc.update_layout(title="Prediction Accuracy")
-                st.plotly_chart(fig_acc, use_container_width=True)
-
-        # Predictions over time
-        dates = [
-            pred.get("original_tweet", {}).get("created_at", "") for pred in predictions
-        ]
-        date_counts = Counter(dates)
-        df_time = pd.DataFrame(list(date_counts.items()), columns=["Date", "Count"])
-        df_time["Date"] = pd.to_datetime(df_time["Date"])
-        df_time = df_time.sort_values("Date")
-        fig_time = px.line(df_time, x="Date", y="Count", title="Predictions Over Time")
-        st.plotly_chart(fig_time, use_container_width=True)
+        # Bar chart for engagement metrics
+        fig_metrics = px.bar(
+            metrics,
+            x="extraction_class",
+            y=["total_likes", "total_retweets", "total_views"],
+            title="Engagement Metrics by Extraction Class",
+            barmode="group",
+        )
+        st.plotly_chart(fig_metrics, use_container_width=True)
 
     with tab3:
-        if os.path.exists(viz_file):
-            with open(viz_file, "r", encoding="utf-8") as f:
-                html_content = f.read()
-            st.subheader("📊 Predictions Visualization")
-            components.html(html_content, height=600, scrolling=True)
-        else:
-            st.warning("No predictions were extracted.")
+        st.subheader("Tweet Details with Predictions")
+        for idx, (_, row) in enumerate(filtered_df.iterrows(), start=1):
+            st.markdown(f"{idx}. [Original Tweet Link]({row['original_tweet_url']})")
+            st.markdown(f"**Class:** {row['extraction_class']}")
+            st.markdown(f"**Original Text:** {row['extraction_text']}")
+            st.markdown(f"**Prediction:** {row['prediction']}")
+            st.markdown(f"**Justification:** {row['justification']}")
+            st.markdown("---")
 
 
 if __name__ == "__main__":
     main()
 
 
-# Improve Extraction & UI
-
-# Get MIT licence
-# Handle media also
-# Add subcription model to see all predictions otherwise only top 100
+# Improve Extraction
+# Add Automatic verification
+# Add already extracted tweets from various handles to select & see
+# Users can vote on them (Authentication)
+# Add contact & buyMeCoffee link
+# Add subcription model, Live tweet analysis, Handle media in tweets, Get MIT Licence

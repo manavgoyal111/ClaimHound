@@ -1,74 +1,656 @@
 [
   {
-    "extraction_class": "other",
-    "extraction_text": "Bhartiya students who finished education in the west",
-    "charInterval": {
-      "start": 1,
-      "end": 53
-    },
-    "alignmentStatus": "MATCH_EXACT",
+    "extraction_class": "politics",
+    "extraction_text": "America's control over India using Pakistanis and Bangladeshis",
+    "charInterval": null,
+    "alignmentStatus": null,
     "extractionIndex": 1,
-    "location": "unknown",
-    "prediction": "Bhartiya students who finished education in the west at the end of the rope",
-    "justification": "Can't say anything to the parents because they had already taken loans for their children to get it completed",
+    "location": "Global",
+    "prediction": "America's attempts to control India using Pakistan and Bangladesh will fail.",
+    "justification": "America's past failures in controlling India for 1000 years.",
     "original_tweet": {
-      "id": "1967239251701141912",
-      "text": "💥Bhartiya students who finished education in the west at the end of the rope.\n\nCan't say anything to the parents because they had already taken loans for their children to get it completed. https://t.co/tPrze0WzmM",
-      "author": "Dr. Shah",
-      "handle": "@ankitatIIMA",
-      "created_at": "2025-09-14 20:19:21",
-      "url": "https://x.com/ankitatIIMA/status/1967239251701141912",
-      "likes": "782",
-      "retweets": "162",
-      "views": "19680"
+      "id": "1967277589258817631",
+      "text": "The actual bots are Pakistani. The Chinese and Russians don't care this much about America. They outsource to Pakistanis and Bangladeshis who America supports foolishly thinking using them they can control India forgetting that for 1000 years they tried to control 🇮🇳 and failed.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 22:51:42",
+      "url": "https://x.com/aravind/status/1967277589258817631",
+      "likes": "2147",
+      "retweets": "283",
+      "views": "34894"
     }
   },
   {
     "extraction_class": "economics",
-    "extraction_text": "dollar",
+    "extraction_text": "Outsourcing of bot operations to Pakistan and Bangladesh",
+    "charInterval": null,
+    "alignmentStatus": null,
+    "extractionIndex": 2,
+    "location": "Global",
+    "prediction": "America funds Pakistani and Bangladeshi bots.",
+    "justification": "To control India.",
+    "original_tweet": {
+      "id": "1967277589258817631",
+      "text": "The actual bots are Pakistani. The Chinese and Russians don't care this much about America. They outsource to Pakistanis and Bangladeshis who America supports foolishly thinking using them they can control India forgetting that for 1000 years they tried to control 🇮🇳 and failed.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 22:51:42",
+      "url": "https://x.com/aravind/status/1967277589258817631",
+      "likes": "2147",
+      "retweets": "283",
+      "views": "34894"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Indian dharmic culture and Indianization of China has kept it backward in modern age",
     "charInterval": {
-      "start": 22,
-      "end": 28
+      "start": 297,
+      "end": 381
     },
     "alignmentStatus": "MATCH_EXACT",
     "extractionIndex": 1,
-    "location": "global",
-    "prediction": "The dollar will fall in 2030",
-    "justification": "India is rising",
+    "location": "China",
+    "prediction": "China must free itself from Indian dharmic culture and Indianization.",
+    "justification": "Hu Shih's belief that Indian culture kept China backward.",
     "original_tweet": {
-      "id": "1967239251701141912",
-      "text": "I predict the fall of dollar in 2030 as India is rising.",
-      "author": "Dr. Shah",
-      "handle": "@ankitatIIMA",
-      "created_at": "2025-09-14 20:19:21",
-      "url": "https://x.com/ankitatIIMA/status/1967239251701141912",
-      "likes": "782",
-      "retweets": "162",
-      "views": "19680"
+      "id": "1967259538358473144",
+      "text": "Hu Shih, the Chinese Indologist and renowned international diplomat said in 1940s that, \"for 2000 years India colonized China without sending a single soldier across.\"\n\nWell, this is quoted a lot without context by Indians. The context he was saying it in is more important. \n\nHis belief was that Indian dharmic culture and Indianization of China has kept it backward in modern age. And China must free itself from it.\n\nSo based on his inputs and what Chairman Mao saw as backward Chinese culture, Mao went for total annihilation in the classic communist way. He called it the \"Cultural revolution.\"\n\nThey burned down libraries, destroyed all traditional texts, killed thousands of teachers and some 35 million more later, and made the Chinese society follow modern communism as defined by the CCP.\n\nFor Deng Xiaoping to do his big developmental reforms and create a large working class in China where anyone will do any job in desperation, Mao's cultural revolution paved the way. \n\nThis led to rapid development of China on a western model. But is this the right way to go about it? Destroying your own culture and killing millions?\n\nNo.\n\nIndia's culture and civilization is being revived right now as we speak to adapt to modern values. It is being transformed slowly but surely. \n\nThis kind of transformation will yeild long term highly beneficial results. \n\nUnlike China, India was oppressed and colonized for a much longer time. But Indians, inspite of all adversities, never gave up their culture to adopt enmasse anything else. \n\nEven Islam which forced itself on Indians worse than what Mao could have done, and for many times longer in length still is in minority after one thousand years, even in 1947 pre-partition.\n\nI am so optimistic about the culture of India that in decades to come it will be the flagbearer for Indian advancement in a very chaotic world which China won't be able to handle. And breakdown unless they quickly adopt back certain Indian cultural values - which the CCP is trying to.\n\nSo a few decades of rapid development and showmanship means nothing for civilizational countries like India and Indians. Young people, like you see in this video, are only carried away by short term illusions. \n\nIn the long term, if we preserve our culture, its diversity, its plurality, and work in unision towards national development, we will come out as one of the top countries and cultures that have stood the test of time to be continually on top of the world directing its sustainable development. \n\nAs we have always been.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 21:39:58",
+      "url": "https://x.com/aravind/status/1967259538358473144",
+      "likes": "2754",
+      "retweets": "460",
+      "views": "118102"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Mao's cultural revolution paved the way for Deng Xiaoping's developmental reforms",
+    "charInterval": {
+      "start": 941,
+      "end": 980
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 2,
+    "location": "China",
+    "prediction": "Deng Xiaoping's reforms were made possible by Mao's Cultural Revolution.",
+    "justification": "Mao's Cultural Revolution created a large working class in China.",
+    "original_tweet": {
+      "id": "1967259538358473144",
+      "text": "Hu Shih, the Chinese Indologist and renowned international diplomat said in 1940s that, \"for 2000 years India colonized China without sending a single soldier across.\"\n\nWell, this is quoted a lot without context by Indians. The context he was saying it in is more important. \n\nHis belief was that Indian dharmic culture and Indianization of China has kept it backward in modern age. And China must free itself from it.\n\nSo based on his inputs and what Chairman Mao saw as backward Chinese culture, Mao went for total annihilation in the classic communist way. He called it the \"Cultural revolution.\"\n\nThey burned down libraries, destroyed all traditional texts, killed thousands of teachers and some 35 million more later, and made the Chinese society follow modern communism as defined by the CCP.\n\nFor Deng Xiaoping to do his big developmental reforms and create a large working class in China where anyone will do any job in desperation, Mao's cultural revolution paved the way. \n\nThis led to rapid development of China on a western model. But is this the right way to go about it? Destroying your own culture and killing millions?\n\nNo.\n\nIndia's culture and civilization is being revived right now as we speak to adapt to modern values. It is being transformed slowly but surely. \n\nThis kind of transformation will yeild long term highly beneficial results. \n\nUnlike China, India was oppressed and colonized for a much longer time. But Indians, inspite of all adversities, never gave up their culture to adopt enmasse anything else. \n\nEven Islam which forced itself on Indians worse than what Mao could have done, and for many times longer in length still is in minority after one thousand years, even in 1947 pre-partition.\n\nI am so optimistic about the culture of India that in decades to come it will be the flagbearer for Indian advancement in a very chaotic world which China won't be able to handle. And breakdown unless they quickly adopt back certain Indian cultural values - which the CCP is trying to.\n\nSo a few decades of rapid development and showmanship means nothing for civilizational countries like India and Indians. Young people, like you see in this video, are only carried away by short term illusions. \n\nIn the long term, if we preserve our culture, its diversity, its plurality, and work in unision towards national development, we will come out as one of the top countries and cultures that have stood the test of time to be continually on top of the world directing its sustainable development. \n\nAs we have always been.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 21:39:58",
+      "url": "https://x.com/aravind/status/1967259538358473144",
+      "likes": "2754",
+      "retweets": "460",
+      "views": "118102"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "China's development model",
+    "charInterval": null,
+    "alignmentStatus": null,
+    "extractionIndex": 1,
+    "location": "China",
+    "prediction": "China's westernization model is not the right way.",
+    "justification": "Destroying its own culture and killing millions.",
+    "original_tweet": {
+      "id": "1967259538358473144",
+      "text": "Hu Shih, the Chinese Indologist and renowned international diplomat said in 1940s that, \"for 2000 years India colonized China without sending a single soldier across.\"\n\nWell, this is quoted a lot without context by Indians. The context he was saying it in is more important. \n\nHis belief was that Indian dharmic culture and Indianization of China has kept it backward in modern age. And China must free itself from it.\n\nSo based on his inputs and what Chairman Mao saw as backward Chinese culture, Mao went for total annihilation in the classic communist way. He called it the \"Cultural revolution.\"\n\nThey burned down libraries, destroyed all traditional texts, killed thousands of teachers and some 35 million more later, and made the Chinese society follow modern communism as defined by the CCP.\n\nFor Deng Xiaoping to do his big developmental reforms and create a large working class in China where anyone will do any job in desperation, Mao's cultural revolution paved the way. \n\nThis led to rapid development of China on a western model. But is this the right way to go about it? Destroying your own culture and killing millions?\n\nNo.\n\nIndia's culture and civilization is being revived right now as we speak to adapt to modern values. It is being transformed slowly but surely. \n\nThis kind of transformation will yeild long term highly beneficial results. \n\nUnlike China, India was oppressed and colonized for a much longer time. But Indians, inspite of all adversities, never gave up their culture to adopt enmasse anything else. \n\nEven Islam which forced itself on Indians worse than what Mao could have done, and for many times longer in length still is in minority after one thousand years, even in 1947 pre-partition.\n\nI am so optimistic about the culture of India that in decades to come it will be the flagbearer for Indian advancement in a very chaotic world which China won't be able to handle. And breakdown unless they quickly adopt back certain Indian cultural values - which the CCP is trying to.\n\nSo a few decades of rapid development and showmanship means nothing for civilizational countries like India and Indians. Young people, like you see in this video, are only carried away by short term illusions. \n\nIn the long term, if we preserve our culture, its diversity, its plurality, and work in unision towards national development, we will come out as one of the top countries and cultures that have stood the test of time to be continually on top of the world directing its sustainable development. \n\nAs we have always been.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 21:39:58",
+      "url": "https://x.com/aravind/status/1967259538358473144",
+      "likes": "2754",
+      "retweets": "460",
+      "views": "118102"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "India's cultural revival",
+    "charInterval": {
+      "start": 1141,
+      "end": 1148
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 2,
+    "location": "India",
+    "prediction": "India's culture and civilization is being revived and transformed to adapt to modern values.",
+    "justification": "India was oppressed and colonized for a much longer time, but Indians never gave up their culture.",
+    "original_tweet": {
+      "id": "1967259538358473144",
+      "text": "Hu Shih, the Chinese Indologist and renowned international diplomat said in 1940s that, \"for 2000 years India colonized China without sending a single soldier across.\"\n\nWell, this is quoted a lot without context by Indians. The context he was saying it in is more important. \n\nHis belief was that Indian dharmic culture and Indianization of China has kept it backward in modern age. And China must free itself from it.\n\nSo based on his inputs and what Chairman Mao saw as backward Chinese culture, Mao went for total annihilation in the classic communist way. He called it the \"Cultural revolution.\"\n\nThey burned down libraries, destroyed all traditional texts, killed thousands of teachers and some 35 million more later, and made the Chinese society follow modern communism as defined by the CCP.\n\nFor Deng Xiaoping to do his big developmental reforms and create a large working class in China where anyone will do any job in desperation, Mao's cultural revolution paved the way. \n\nThis led to rapid development of China on a western model. But is this the right way to go about it? Destroying your own culture and killing millions?\n\nNo.\n\nIndia's culture and civilization is being revived right now as we speak to adapt to modern values. It is being transformed slowly but surely. \n\nThis kind of transformation will yeild long term highly beneficial results. \n\nUnlike China, India was oppressed and colonized for a much longer time. But Indians, inspite of all adversities, never gave up their culture to adopt enmasse anything else. \n\nEven Islam which forced itself on Indians worse than what Mao could have done, and for many times longer in length still is in minority after one thousand years, even in 1947 pre-partition.\n\nI am so optimistic about the culture of India that in decades to come it will be the flagbearer for Indian advancement in a very chaotic world which China won't be able to handle. And breakdown unless they quickly adopt back certain Indian cultural values - which the CCP is trying to.\n\nSo a few decades of rapid development and showmanship means nothing for civilizational countries like India and Indians. Young people, like you see in this video, are only carried away by short term illusions. \n\nIn the long term, if we preserve our culture, its diversity, its plurality, and work in unision towards national development, we will come out as one of the top countries and cultures that have stood the test of time to be continually on top of the world directing its sustainable development. \n\nAs we have always been.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 21:39:58",
+      "url": "https://x.com/aravind/status/1967259538358473144",
+      "likes": "2754",
+      "retweets": "460",
+      "views": "118102"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "India's future role",
+    "charInterval": {
+      "start": 1377,
+      "end": 1382
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 3,
+    "location": "India",
+    "prediction": "In decades to come, India will be the flagbearer for Indian advancement in a chaotic world.",
+    "justification": "India's culture will be a strength in a chaotic world, unlike China.",
+    "original_tweet": {
+      "id": "1967259538358473144",
+      "text": "Hu Shih, the Chinese Indologist and renowned international diplomat said in 1940s that, \"for 2000 years India colonized China without sending a single soldier across.\"\n\nWell, this is quoted a lot without context by Indians. The context he was saying it in is more important. \n\nHis belief was that Indian dharmic culture and Indianization of China has kept it backward in modern age. And China must free itself from it.\n\nSo based on his inputs and what Chairman Mao saw as backward Chinese culture, Mao went for total annihilation in the classic communist way. He called it the \"Cultural revolution.\"\n\nThey burned down libraries, destroyed all traditional texts, killed thousands of teachers and some 35 million more later, and made the Chinese society follow modern communism as defined by the CCP.\n\nFor Deng Xiaoping to do his big developmental reforms and create a large working class in China where anyone will do any job in desperation, Mao's cultural revolution paved the way. \n\nThis led to rapid development of China on a western model. But is this the right way to go about it? Destroying your own culture and killing millions?\n\nNo.\n\nIndia's culture and civilization is being revived right now as we speak to adapt to modern values. It is being transformed slowly but surely. \n\nThis kind of transformation will yeild long term highly beneficial results. \n\nUnlike China, India was oppressed and colonized for a much longer time. But Indians, inspite of all adversities, never gave up their culture to adopt enmasse anything else. \n\nEven Islam which forced itself on Indians worse than what Mao could have done, and for many times longer in length still is in minority after one thousand years, even in 1947 pre-partition.\n\nI am so optimistic about the culture of India that in decades to come it will be the flagbearer for Indian advancement in a very chaotic world which China won't be able to handle. And breakdown unless they quickly adopt back certain Indian cultural values - which the CCP is trying to.\n\nSo a few decades of rapid development and showmanship means nothing for civilizational countries like India and Indians. Young people, like you see in this video, are only carried away by short term illusions. \n\nIn the long term, if we preserve our culture, its diversity, its plurality, and work in unision towards national development, we will come out as one of the top countries and cultures that have stood the test of time to be continually on top of the world directing its sustainable development. \n\nAs we have always been.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 21:39:58",
+      "url": "https://x.com/aravind/status/1967259538358473144",
+      "likes": "2754",
+      "retweets": "460",
+      "views": "118102"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "India will come out as one of the top countries and cultures",
+    "charInterval": {
+      "start": 2118,
+      "end": 2123
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 1,
+    "location": "India",
+    "prediction": "India will be one of the top countries and cultures",
+    "justification": "If India preserves its culture, diversity, plurality, and works in unison towards national development",
+    "original_tweet": {
+      "id": "1967259538358473144",
+      "text": "Hu Shih, the Chinese Indologist and renowned international diplomat said in 1940s that, \"for 2000 years India colonized China without sending a single soldier across.\"\n\nWell, this is quoted a lot without context by Indians. The context he was saying it in is more important. \n\nHis belief was that Indian dharmic culture and Indianization of China has kept it backward in modern age. And China must free itself from it.\n\nSo based on his inputs and what Chairman Mao saw as backward Chinese culture, Mao went for total annihilation in the classic communist way. He called it the \"Cultural revolution.\"\n\nThey burned down libraries, destroyed all traditional texts, killed thousands of teachers and some 35 million more later, and made the Chinese society follow modern communism as defined by the CCP.\n\nFor Deng Xiaoping to do his big developmental reforms and create a large working class in China where anyone will do any job in desperation, Mao's cultural revolution paved the way. \n\nThis led to rapid development of China on a western model. But is this the right way to go about it? Destroying your own culture and killing millions?\n\nNo.\n\nIndia's culture and civilization is being revived right now as we speak to adapt to modern values. It is being transformed slowly but surely. \n\nThis kind of transformation will yeild long term highly beneficial results. \n\nUnlike China, India was oppressed and colonized for a much longer time. But Indians, inspite of all adversities, never gave up their culture to adopt enmasse anything else. \n\nEven Islam which forced itself on Indians worse than what Mao could have done, and for many times longer in length still is in minority after one thousand years, even in 1947 pre-partition.\n\nI am so optimistic about the culture of India that in decades to come it will be the flagbearer for Indian advancement in a very chaotic world which China won't be able to handle. And breakdown unless they quickly adopt back certain Indian cultural values - which the CCP is trying to.\n\nSo a few decades of rapid development and showmanship means nothing for civilizational countries like India and Indians. Young people, like you see in this video, are only carried away by short term illusions. \n\nIn the long term, if we preserve our culture, its diversity, its plurality, and work in unision towards national development, we will come out as one of the top countries and cultures that have stood the test of time to be continually on top of the world directing its sustainable development. \n\nAs we have always been.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 21:39:58",
+      "url": "https://x.com/aravind/status/1967259538358473144",
+      "likes": "2754",
+      "retweets": "460",
+      "views": "118102"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "cognitive decline in your old age",
+    "charInterval": {
+      "start": 113,
+      "end": 146
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 1,
+    "location": "India",
+    "prediction": "You will have cognitive decline in your old age if you constantly complain about India.",
+    "justification": "This is a good science backed research paper to read for those constantly complaining about India.",
+    "original_tweet": {
+      "id": "1967237340117811428",
+      "text": "This is a good science backed research paper to read for those constantly complaining about India. You will have cognitive decline in your old age! Beware. \n\nAt least think of something positive when you have something to complain about, to even it out. \n\nThere are so many positives about India, and they are happening everyday to be ppreciated, even if you don't want to acknowledge it publicly for political reasons.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 20:11:46",
+      "url": "https://x.com/aravind/status/1967237340117811428",
+      "likes": "2589",
+      "retweets": "361",
+      "views": "99305"
     }
   },
   {
     "extraction_class": "economics",
-    "extraction_text": "Oil prices",
+    "extraction_text": "cost of living in India",
     "charInterval": {
-      "start": 0,
-      "end": 10
+      "start": 329,
+      "end": 346
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 1,
+    "location": "India",
+    "prediction": "India will overcome bad infra and cleanliness problem in the next decade.",
+    "justification": "India is becoming a over 7000$ per capita country.",
+    "original_tweet": {
+      "id": "1967091069893701688",
+      "text": "Not at all true. If you live in Thailand and Vietnam, you will have 2x worse air many times of the year and pay 2x more than India all the time, from rentals to food to conveyance. Even Laos is costlier than India to live. \n\nSri Lanka probably is the only place that can be said to offer better bang for the buck than India. The cost of living in Indian metros is some of the cheapest in the world for the standard of living we get. \n\nOf course, that is not an excuse to live with filth & uncleared rubble all over, and bad infra. But I am very optimistic that India will overcome this bad infra and cleanliness problem in the next decade, as it becomes a over 7000$ per capita country.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 10:30:32",
+      "url": "https://x.com/aravind/status/1967091069893701688",
+      "likes": "8293",
+      "retweets": "1018",
+      "views": "471072"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "cost of living comparison",
+    "charInterval": {
+      "start": 325,
+      "end": 343
+    },
+    "alignmentStatus": "MATCH_FUZZY",
+    "extractionIndex": 2,
+    "location": "Thailand, Vietnam, Laos, Sri Lanka, India",
+    "prediction": "Cost of living in India is cheaper than Thailand and Vietnam.",
+    "justification": "Rentals, food, and conveyance are 2x more expensive in Thailand and Vietnam than in India.",
+    "original_tweet": {
+      "id": "1967091069893701688",
+      "text": "Not at all true. If you live in Thailand and Vietnam, you will have 2x worse air many times of the year and pay 2x more than India all the time, from rentals to food to conveyance. Even Laos is costlier than India to live. \n\nSri Lanka probably is the only place that can be said to offer better bang for the buck than India. The cost of living in Indian metros is some of the cheapest in the world for the standard of living we get. \n\nOf course, that is not an excuse to live with filth & uncleared rubble all over, and bad infra. But I am very optimistic that India will overcome this bad infra and cleanliness problem in the next decade, as it becomes a over 7000$ per capita country.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 10:30:32",
+      "url": "https://x.com/aravind/status/1967091069893701688",
+      "likes": "8293",
+      "retweets": "1018",
+      "views": "471072"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Keir Starmer will be made to resign",
+    "charInterval": {
+      "start": 12,
+      "end": 24
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 1,
+    "location": "UK",
+    "prediction": "Keir Starmer will resign soon.",
+    "justification": "All the extreme left and communist govts are being taken out one by one by the new USDS.",
+    "original_tweet": {
+      "id": "1967070355685785849",
+      "text": "Nepal done. Keir Starmer next? I can't say exacyly the time but I am sure he will be made to resign soon. All the extreme left and communist govts are being taken out one by one by the new USDS. Taking down VZ's Maduro will be the ultimate test for the US. But I think they will. https://t.co/iM59f1zon6",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 09:08:13",
+      "url": "https://x.com/aravind/status/1967070355685785849",
+      "likes": "6613",
+      "retweets": "1030",
+      "views": "359962"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Taking down VZ's Maduro will be the ultimate test for the US",
+    "charInterval": {
+      "start": 195,
+      "end": 255
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 2,
+    "location": "Venezuela",
+    "prediction": "The US will take down VZ's Maduro.",
+    "justification": "It will be the ultimate test for the US.",
+    "original_tweet": {
+      "id": "1967070355685785849",
+      "text": "Nepal done. Keir Starmer next? I can't say exacyly the time but I am sure he will be made to resign soon. All the extreme left and communist govts are being taken out one by one by the new USDS. Taking down VZ's Maduro will be the ultimate test for the US. But I think they will. https://t.co/iM59f1zon6",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-14 09:08:13",
+      "url": "https://x.com/aravind/status/1967070355685785849",
+      "likes": "6613",
+      "retweets": "1030",
+      "views": "359962"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Gyan Bharatam mission",
+    "charInterval": {
+      "start": 41,
+      "end": 62
     },
     "alignmentStatus": "MATCH_EXACT",
     "extractionIndex": 1,
-    "location": "unknown",
-    "prediction": "Oil prices should rise",
-    "justification": "due to war with US in 3 years",
+    "location": "India",
+    "prediction": "It is going to help preserve the expansive Indian knowledge systems and our culture in a big way.",
+    "justification": "A great initiative",
     "original_tweet": {
-      "id": "1967239251701141912",
-      "text": "Oil prices should rise duet o war with US in 3 years.",
-      "author": "Dr. Shah",
-      "handle": "@ankitatIIMA",
-      "created_at": "2025-09-14 20:19:21",
-      "url": "https://x.com/ankitatIIMA/status/1967239251701141912",
-      "likes": "782",
-      "retweets": "162",
-      "views": "19680"
+      "id": "1966531196407750848",
+      "text": "I hope Indian media cover more about the Gyan Bharatam mission unveiled by PM Modi. It is going to help preserve the expansive Indian knowledge systems and our culture in a big way. A great initiative none is talking about. Hope @grok or @AskPerplexity can explain what it is in replies.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-12 21:25:48",
+      "url": "https://x.com/aravind/status/1966531196407750848",
+      "likes": "6128",
+      "retweets": "1056",
+      "views": "192454"
+    }
+  },
+  {
+    "extraction_class": "economics",
+    "extraction_text": "TRAI mandates two plans",
+    "charInterval": {
+      "start": 20,
+      "end": 24
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 1,
+    "location": "India",
+    "prediction": "Two plans will be mandated by TRAI: a student plan (100-150 rupees with 3GB data and 10 rupees talk time) and a senior plan (sub 100 rupees with 1GB data and 60 mins talk time).",
+    "justification": "Very doable for telcos.",
+    "original_tweet": {
+      "id": "1966520027244548406",
+      "text": "Very good action by TRAI. They can simply mandate two plans - a 100 to 150 rupees \"Student plan\" with more data  like say 3 GB of data for a month and ten rupees talk time. And a sub 100 rupee \"Senior plan\" with 1 GB data + 60 mins talk time for a month. Very doable for telcos. https://t.co/8IS8kz8ayd",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-12 20:41:25",
+      "url": "https://x.com/aravind/status/1966520027244548406",
+      "likes": "5675",
+      "retweets": "740",
+      "views": "181454"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "hate crimes against Indian ethnic people in the US",
+    "charInterval": {
+      "start": 203,
+      "end": 253
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 1,
+    "location": "US",
+    "prediction": "Hate crimes against Indian ethnic people in the US will increase.",
+    "justification": "Influential Indian Americans remain silent when one of their own is attacked, unlike other groups (Jews, Muslims, Blacks, East Asians).",
+    "original_tweet": {
+      "id": "1966441105899278818",
+      "text": "Yesterday's gruesome beheading of Indian American motel owner is so sick and stomach churning to see.\n\nBut not at all that shocking, given we all knew what was coming and is only going to increase - the hate crimes against Indian ethnic people in the US.\n\nSuch violence is only going to increase because influential Indian Americans sit quietly not speaking out when one of their people is attacked like say Jews, Muslims, Blacks, and east Asians do.\n\nAll the SV Tech Bros and Indian American millionaires are quiet on this murder of a fellow entrepreneur, but are speaking out against Charlie Kirk's gruesome shooting as that's the mainstream America's topic.\n\nMr. Chandra was killed just because he asked someone to translate what the murderer was saying about using a washing machine instead of directly listening to him it seems. \n\nMy heart goes out to Chandra ji's family who witnessed it. Can't imagine what they are going through right now.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-12 15:27:49",
+      "url": "https://x.com/aravind/status/1966441105899278818",
+      "likes": "9406",
+      "retweets": "2508",
+      "views": "795087"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "civil war in the US",
+    "charInterval": {
+      "start": 19,
+      "end": 38
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 1,
+    "location": "US",
+    "prediction": "There will not be a civil war in the US after Charlie's murder.",
+    "justification": "It will only be used as a distraction from Epstein files and gun control regulations.",
+    "original_tweet": {
+      "id": "1966179318763266194",
+      "text": "Those talking of a civil war in the US after Charlie's murder are naive. It will only be used for two things. A distraction from Epstein files and gun control regulations on Americans using Trump himself. Watch how Trump soon talks about gun violence and need to regulate arms.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 22:07:34",
+      "url": "https://x.com/aravind/status/1966179318763266194",
+      "likes": "5198",
+      "retweets": "600",
+      "views": "152895"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "gun control regulations",
+    "charInterval": {
+      "start": 147,
+      "end": 170
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 2,
+    "location": "US",
+    "prediction": "Trump will soon talk about gun violence and the need to regulate arms.",
+    "justification": "To distract from Epstein files.",
+    "original_tweet": {
+      "id": "1966179318763266194",
+      "text": "Those talking of a civil war in the US after Charlie's murder are naive. It will only be used for two things. A distraction from Epstein files and gun control regulations on Americans using Trump himself. Watch how Trump soon talks about gun violence and need to regulate arms.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 22:07:34",
+      "url": "https://x.com/aravind/status/1966179318763266194",
+      "likes": "5198",
+      "retweets": "600",
+      "views": "152895"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "India's political stability",
+    "charInterval": null,
+    "alignmentStatus": null,
+    "extractionIndex": 1,
+    "location": "India",
+    "prediction": "Unelected officials might seize power in India, similar to Nepal or Sri Lanka.",
+    "justification": "The author believes that this is a possibility, but not a certainty.",
+    "original_tweet": {
+      "id": "1966173612437811491",
+      "text": "As Shiv says, Nepal or Sri Lanka kind of situation happening in India, so some unelected, compromised netas can capture power is only their wet dream. \n\nBut India has to take social media seriously. There are no two ways about it. Our GoI netas are too senior and not in touch with what our Gen Z and younger are being programmed with. \n\nEven if they come in touch with those content, they may not feel it is something of concern, but the young do get swayed by it and act up. \n\nThey are only taking note when some crass content like jokes demeaning mothers and parents are said. \n\nBut the reality is our adversaries are using foreign SM platforms to personalize hateful content and incite every group in India against another.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 21:44:53",
+      "url": "https://x.com/aravind/status/1966173612437811491",
+      "likes": "4535",
+      "retweets": "862",
+      "views": "303419"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Impact of social media on Indian politics",
+    "charInterval": null,
+    "alignmentStatus": null,
+    "extractionIndex": 2,
+    "location": "India",
+    "prediction": "Foreign adversaries are using social media to incite conflict among different groups in India.",
+    "justification": "The author claims that this is happening, and that the Indian government is not adequately addressing it.",
+    "original_tweet": {
+      "id": "1966173612437811491",
+      "text": "As Shiv says, Nepal or Sri Lanka kind of situation happening in India, so some unelected, compromised netas can capture power is only their wet dream. \n\nBut India has to take social media seriously. There are no two ways about it. Our GoI netas are too senior and not in touch with what our Gen Z and younger are being programmed with. \n\nEven if they come in touch with those content, they may not feel it is something of concern, but the young do get swayed by it and act up. \n\nThey are only taking note when some crass content like jokes demeaning mothers and parents are said. \n\nBut the reality is our adversaries are using foreign SM platforms to personalize hateful content and incite every group in India against another.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 21:44:53",
+      "url": "https://x.com/aravind/status/1966173612437811491",
+      "likes": "4535",
+      "retweets": "862",
+      "views": "303419"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Indian government's response to social media",
+    "charInterval": null,
+    "alignmentStatus": null,
+    "extractionIndex": 3,
+    "location": "India",
+    "prediction": "The Indian government is not adequately addressing the issue of foreign adversaries using social media to incite conflict.",
+    "justification": "The author states that the government is only taking note of crass content, while ignoring more subtle forms of manipulation.",
+    "original_tweet": {
+      "id": "1966173612437811491",
+      "text": "As Shiv says, Nepal or Sri Lanka kind of situation happening in India, so some unelected, compromised netas can capture power is only their wet dream. \n\nBut India has to take social media seriously. There are no two ways about it. Our GoI netas are too senior and not in touch with what our Gen Z and younger are being programmed with. \n\nEven if they come in touch with those content, they may not feel it is something of concern, but the young do get swayed by it and act up. \n\nThey are only taking note when some crass content like jokes demeaning mothers and parents are said. \n\nBut the reality is our adversaries are using foreign SM platforms to personalize hateful content and incite every group in India against another.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 21:44:53",
+      "url": "https://x.com/aravind/status/1966173612437811491",
+      "likes": "4535",
+      "retweets": "862",
+      "views": "303419"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "India is being blamed for issues in Nepal",
+    "charInterval": {
+      "start": 58,
+      "end": 99
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 1,
+    "location": "Nepal",
+    "prediction": "inimical forces are poisoning Nepali minds against Indians",
+    "justification": "using social media",
+    "original_tweet": {
+      "id": "1966142820412174682",
+      "text": "As I said in March, and been warning since last December, India is being blamed for issues in Nepal and fires are being fanned in Nepali hearts against India.\n\nSlowly and surely, using social media, inimical forces are poisioning Nepali minds against Indians right now as we read this. This needs to be countered by India at the earnest if they have not prepared already as I posted in March.\n\nI leave it to MeA and GoI for their strategy on it, but for us common Indians - please do not enrage over SM posts planted to incite and engage with trolls inciting Indians against Nepalis. \n\nThey are our blood brothers and sisters. Do not post in rage against anyone or even inadverdently incite. Understand that the adversaries will try to use fault lines and high emotions to create rift between us. \n\nThe Indian state too must be vigilant against any physical violence against Indian nationals and/or Nepalis in India incited by Pakis and others via social media and used effectively to fan hatred and animosity.\n\nNepal is the hotbed of ISI, CIA, MSS and all the forces who want to make Nepal an anti-India base. India must be super vigilant and super deft in handling their cunning hate campaigns in all forms - offline and online 🙏🏻",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 19:42:32",
+      "url": "https://x.com/aravind/status/1966142820412174682",
+      "likes": "4379",
+      "retweets": "967",
+      "views": "247393"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "India needs to counter the negative propaganda",
+    "charInterval": {
+      "start": 152,
+      "end": 157
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 2,
+    "location": "India",
+    "prediction": "India needs to counter the negative propaganda against it in Nepal",
+    "justification": "to prevent rift between India and Nepal",
+    "original_tweet": {
+      "id": "1966142820412174682",
+      "text": "As I said in March, and been warning since last December, India is being blamed for issues in Nepal and fires are being fanned in Nepali hearts against India.\n\nSlowly and surely, using social media, inimical forces are poisioning Nepali minds against Indians right now as we read this. This needs to be countered by India at the earnest if they have not prepared already as I posted in March.\n\nI leave it to MeA and GoI for their strategy on it, but for us common Indians - please do not enrage over SM posts planted to incite and engage with trolls inciting Indians against Nepalis. \n\nThey are our blood brothers and sisters. Do not post in rage against anyone or even inadverdently incite. Understand that the adversaries will try to use fault lines and high emotions to create rift between us. \n\nThe Indian state too must be vigilant against any physical violence against Indian nationals and/or Nepalis in India incited by Pakis and others via social media and used effectively to fan hatred and animosity.\n\nNepal is the hotbed of ISI, CIA, MSS and all the forces who want to make Nepal an anti-India base. India must be super vigilant and super deft in handling their cunning hate campaigns in all forms - offline and online 🙏🏻",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 19:42:32",
+      "url": "https://x.com/aravind/status/1966142820412174682",
+      "likes": "4379",
+      "retweets": "967",
+      "views": "247393"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "physical violence against Indian nationals and/or Nepalis in India",
+    "charInterval": {
+      "start": 849,
+      "end": 915
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 1,
+    "location": "India",
+    "prediction": "There will be physical violence against Indian nationals and/or Nepalis in India.",
+    "justification": "Pakis and others via social media fan hatred and animosity.",
+    "original_tweet": {
+      "id": "1966142820412174682",
+      "text": "As I said in March, and been warning since last December, India is being blamed for issues in Nepal and fires are being fanned in Nepali hearts against India.\n\nSlowly and surely, using social media, inimical forces are poisioning Nepali minds against Indians right now as we read this. This needs to be countered by India at the earnest if they have not prepared already as I posted in March.\n\nI leave it to MeA and GoI for their strategy on it, but for us common Indians - please do not enrage over SM posts planted to incite and engage with trolls inciting Indians against Nepalis. \n\nThey are our blood brothers and sisters. Do not post in rage against anyone or even inadverdently incite. Understand that the adversaries will try to use fault lines and high emotions to create rift between us. \n\nThe Indian state too must be vigilant against any physical violence against Indian nationals and/or Nepalis in India incited by Pakis and others via social media and used effectively to fan hatred and animosity.\n\nNepal is the hotbed of ISI, CIA, MSS and all the forces who want to make Nepal an anti-India base. India must be super vigilant and super deft in handling their cunning hate campaigns in all forms - offline and online 🙏🏻",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 19:42:32",
+      "url": "https://x.com/aravind/status/1966142820412174682",
+      "likes": "4379",
+      "retweets": "967",
+      "views": "247393"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "Nepal is the hotbed of ISI, CIA, MSS",
+    "charInterval": {
+      "start": 1012,
+      "end": 1048
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 2,
+    "location": "Nepal",
+    "prediction": "Nepal is used as an anti-India base.",
+    "justification": "ISI, CIA, MSS want to make Nepal an anti-India base.",
+    "original_tweet": {
+      "id": "1966142820412174682",
+      "text": "As I said in March, and been warning since last December, India is being blamed for issues in Nepal and fires are being fanned in Nepali hearts against India.\n\nSlowly and surely, using social media, inimical forces are poisioning Nepali minds against Indians right now as we read this. This needs to be countered by India at the earnest if they have not prepared already as I posted in March.\n\nI leave it to MeA and GoI for their strategy on it, but for us common Indians - please do not enrage over SM posts planted to incite and engage with trolls inciting Indians against Nepalis. \n\nThey are our blood brothers and sisters. Do not post in rage against anyone or even inadverdently incite. Understand that the adversaries will try to use fault lines and high emotions to create rift between us. \n\nThe Indian state too must be vigilant against any physical violence against Indian nationals and/or Nepalis in India incited by Pakis and others via social media and used effectively to fan hatred and animosity.\n\nNepal is the hotbed of ISI, CIA, MSS and all the forces who want to make Nepal an anti-India base. India must be super vigilant and super deft in handling their cunning hate campaigns in all forms - offline and online 🙏🏻",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 19:42:32",
+      "url": "https://x.com/aravind/status/1966142820412174682",
+      "likes": "4379",
+      "retweets": "967",
+      "views": "247393"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "The Deep State (DS) has affected the gut microbiome of millions in the US and India.",
+    "charInterval": {
+      "start": 8,
+      "end": 11
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 1,
+    "location": "US and India",
+    "prediction": "The gut microbiome of millions in the US and India is affected by DS chemicals, agri, fast food, and FMCG products.",
+    "justification": "The DS has forced their Chemicals, Agri, Fast Food, and FMCG products so much in the US that it has affected the gut microbiome of millions. These foods and chemicals are now getting into Indian plates as well.",
+    "original_tweet": {
+      "id": "1966056534728913316",
+      "text": "Indeed. The DS has forced their Chemicals, Agri, Fast Food, and FMCG products so much in the US that it has affected the gut microbiome of millions. These foods and chemicals are now getting into Indian plates as well. Even if you face poop problems in India remember the DS :)",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 13:59:40",
+      "url": "https://x.com/aravind/status/1966056534728913316",
+      "likes": "4177",
+      "retweets": "494",
+      "views": "202070"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "deep state group hit Trump and Charlie",
+    "charInterval": {
+      "start": 24,
+      "end": 40
+    },
+    "alignmentStatus": "MATCH_LESSER",
+    "extractionIndex": 1,
+    "location": "USA",
+    "prediction": "The same deep state group that tried to hit Trump got Charlie.",
+    "justification": "To strengthen the MAGA movement and cult like backing for Trump.",
+    "original_tweet": {
+      "id": "1965932823489163714",
+      "text": "I got a hunch. The same deep state group that tried to hit Trump got Charlie. And the worse hunch is, they are doing this to strengthen the MAGA movement and cult like backing for Trump and the crazy policies he is handed over to execute. \n\nTrump was troubled recently again by the other DS faction using Epstein files and he has been faltering. For example, like driving India away and taking decisions that are advantaging China. Now EP files will go into abeyance for a while.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 05:48:05",
+      "url": "https://x.com/aravind/status/1965932823489163714",
+      "likes": "6580",
+      "retweets": "733",
+      "views": "406331"
+    }
+  },
+  {
+    "extraction_class": "politics",
+    "extraction_text": "strengthen the MAGA movement",
+    "charInterval": {
+      "start": 125,
+      "end": 153
+    },
+    "alignmentStatus": "MATCH_EXACT",
+    "extractionIndex": 2,
+    "location": "USA",
+    "prediction": "The attack on Trump and Charlie is to strengthen the MAGA movement.",
+    "justification": "Trump was troubled recently again by the other DS faction using Epstein files and he has been faltering.",
+    "original_tweet": {
+      "id": "1965932823489163714",
+      "text": "I got a hunch. The same deep state group that tried to hit Trump got Charlie. And the worse hunch is, they are doing this to strengthen the MAGA movement and cult like backing for Trump and the crazy policies he is handed over to execute. \n\nTrump was troubled recently again by the other DS faction using Epstein files and he has been faltering. For example, like driving India away and taking decisions that are advantaging China. Now EP files will go into abeyance for a while.",
+      "author": "Aravind",
+      "handle": "@aravind",
+      "created_at": "2025-09-11 05:48:05",
+      "url": "https://x.com/aravind/status/1965932823489163714",
+      "likes": "6580",
+      "retweets": "733",
+      "views": "406331"
     }
   }
 ]
